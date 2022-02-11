@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {CreateSegmentDto} from './dto';
 import {SegmentService} from "./segment.service";
 import {ISegmentRO} from "./segment.interface";
@@ -20,12 +20,17 @@ export class SegmentController {
     }
 
     @Post()
-    async create(@Body() segmentData: CreateSegmentDto) {
+    async createSegment(@Body() segmentData: CreateSegmentDto) {
         return this.segmentService.create(segmentData);
     }
 
+    @Put('/:id')
+    async updateSegment(@Param() params, @Body() segmentData: CreateSegmentDto) {
+        return this.segmentService.update(params.id, segmentData);
+    }
+
     @Delete('/:id')
-    async delete(@Param() params): Promise<any> {
+    async deleteSegment(@Param() params): Promise<any> {
         return this.segmentService.delete(params.id);
     }
 }

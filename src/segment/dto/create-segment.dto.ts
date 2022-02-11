@@ -8,6 +8,5 @@ export class CreateSegmentDto {
   @IsNotEmpty()
   readonly name: string;
 
-  @IsNotEmpty()
   readonly length: number;
 }

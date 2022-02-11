@@ -20,6 +20,11 @@ export class SegmentService {
         return SegmentService.buildSegmentRO(await createdSegment.save());
     }
 
+    async update(id: string, segmentDto: CreateSegmentDto): Promise<ISegmentRO> {
+        const updatedSegment = await this.segmentModel.findByIdAndUpdate(id, segmentDto, {new: true}).exec();
+        return SegmentService.buildSegmentRO(updatedSegment);
+    }
+
     async delete(id: number) {
         return this.segmentModel.deleteOne({id}).exec();
     }

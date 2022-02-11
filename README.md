@@ -51,7 +51,7 @@ _In progress_
 ### Basic stuff
 
 * ✔️ Create a database of eligible segments
-* 🚧 CRUD for these eligible segments
+* ✔️ CRUD for these eligible segments
 * ❌ Get a Strava activity via its ID
 * ❌ Extract new segments ID from this activity
 * ❌ For matching segments, generate a PNG (name, length)
@@ -71,4 +71,3 @@ _In progress_
 * Tests for SegmentService
 * GitHub Actions configuration
 * SonarQube analysis
-* Update a segment (currently no `PUT` route)

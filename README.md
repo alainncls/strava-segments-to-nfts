@@ -1,6 +1,6 @@
 # Strava Segments to NFTs
 
-This project aims to generate an NFT for each new unique segment a Strava user runs through.
+This project aims to generate an NFT for each new unique and eligible segment a Strava user runs through.
 
 ## How to launch
 
@@ -18,7 +18,11 @@ This project aims to generate an NFT for each new unique segment a Strava user r
 
 ### Run tests
 
-_In progress_
+    npm run test
+
+### Run tests with watch
+
+    npm run test:watch
 
 ## Technical notes
 

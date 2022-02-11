@@ -67,7 +67,6 @@ _In progress_
 
 ## To Do
 
-* Add a `SegmentRepository` to decouple the service and the DB access
 * Tests for `SegmentService`
 * GitHub Actions configuration
 * SonarQube analysis

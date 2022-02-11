@@ -1,12 +1,12 @@
-import { IsNotEmpty } from 'class-validator';
+import {IsNotEmpty} from 'class-validator';
 
 export class CreateSegmentDto {
 
-  @IsNotEmpty()
-  readonly stravaId: number;
+    @IsNotEmpty()
+    readonly stravaId: number;
 
-  @IsNotEmpty()
-  readonly name: string;
+    @IsNotEmpty()
+    readonly name: string;
 
-  readonly length: number;
+    readonly length: number;
 }

@@ -1,1 +1,1 @@
-export { CreateSegmentDto } from './create-segment.dto';
+export {CreateSegmentDto} from './create-segment.dto';

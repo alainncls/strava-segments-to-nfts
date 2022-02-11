@@ -67,6 +67,5 @@ _In progress_
 
 ## To Do
 
-* Tests for `SegmentService`
 * GitHub Actions configuration
 * SonarQube analysis

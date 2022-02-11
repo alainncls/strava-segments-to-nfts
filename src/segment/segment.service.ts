@@ -25,11 +25,11 @@ export class SegmentService {
         return SegmentService.buildSegmentRO(updatedSegment);
     }
 
-    async delete(id: number) {
+    async delete(id: string) {
         return this.segmentModel.deleteOne({id}).exec();
     }
 
-    async findById(id: number): Promise<ISegmentRO> {
+    async findById(id: string): Promise<ISegmentRO> {
         const segment = await this.segmentModel.findById(id).exec();
 
         if (!segment) {

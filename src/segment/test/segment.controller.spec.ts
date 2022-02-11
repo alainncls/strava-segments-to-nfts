@@ -7,10 +7,12 @@ describe('SegmentController', () => {
     let controller: SegmentController;
 
     const testSegment = {
-        id: 'ID',
-        stravaId: 123456,
-        name: 'SEGMENT_NAME',
-        length: 17
+        segment: {
+            id: 'ID',
+            stravaId: 123456,
+            name: 'SEGMENT_NAME',
+            length: 17
+        }
     };
 
     const mockSegmentService = {
@@ -19,30 +21,36 @@ describe('SegmentController', () => {
         }),
         create: jest.fn((dto: CreateSegmentDto) => {
             return {
-                id: 'ID',
-                stravaId: dto.stravaId,
-                name: dto.name,
-                length: dto.length
+                segment: {
+                    id: 'ID',
+                    stravaId: dto.stravaId,
+                    name: dto.name,
+                    length: dto.length
+                }
             };
         }),
         update: jest.fn((id, dto: CreateSegmentDto) => {
             return {
-                id,
-                stravaId: dto.stravaId,
-                name: dto.name,
-                length: dto.length
+                segment: {
+                    id: 'ID',
+                    stravaId: dto.stravaId,
+                    name: dto.name,
+                    length: dto.length
+                }
             };
         }),
         delete: jest.fn(() => {
             return {'deleteCount': 1};
         }),
         findById: jest.fn((id: string) => {
-            return {
-                id,
-                stravaId: 123456,
-                name: 'SEGMENT_NAME',
-                length: 17
-            };
+            return id === 'ID' ? {
+                segment: {
+                    id: 'ID',
+                    stravaId: 123456,
+                    name: 'SEGMENT_NAME',
+                    length: 17
+                }
+            } :  {Segment: ' not found'};
         }),
     };
 
@@ -80,10 +88,12 @@ describe('SegmentController', () => {
             name: 'NEW_SEGMENT_NAME',
             length: 17
         })).toEqual({
-            id: 'ID',
-            stravaId: 123456,
-            name: 'NEW_SEGMENT_NAME',
-            length: 17
+            segment: {
+                id: 'ID',
+                stravaId: 123456,
+                name: 'NEW_SEGMENT_NAME',
+                length: 17
+            }
         });
     });
 
@@ -93,5 +103,9 @@ describe('SegmentController', () => {
 
     it('should find a segment by its ID', async () => {
         expect(await controller.getSegment({id: 'ID'})).toEqual(testSegment);
+    });
+
+    it('should return an error when it cannot find a segment by its ID', async () => {
+        expect(await controller.getSegment({id: 'WRONG_ID'})).toEqual({Segment: ' not found'});
     });
 });

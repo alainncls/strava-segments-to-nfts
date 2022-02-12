@@ -1,5 +1,9 @@
 # Strava Segments to NFTs
 
+[![Build](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/pipeline.yml/badge.svg)](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/tests.yml)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
+
 This project aims to generate an NFT for each new unique and eligible segment a Strava user runs through.
 
 ## How to launch
@@ -70,6 +74,3 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ❌ When a collection is completed, generate a "GOLD" NFT
 
 ## To Do
-
-* GitHub Actions configuration
-* SonarQube analysis

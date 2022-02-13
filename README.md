@@ -47,6 +47,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 ### Frontend
 
 * React?
+* Implement Strava's OAuth2 flow: https://github.com/simov/grant
 
 ### Strava API interaction
 
@@ -60,9 +61,10 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 * ✔️ Create a database of eligible segments
 * ✔️ CRUD for these eligible segments
-* ❌ Get a Strava activity via its ID
-* ❌ Extract new segments ID from this activity
+* 🚧 Get a Strava activity via its ID (need to connect from a webapp to get a token)
+* ✔️ Extract new segments IDs from this activity
 * ❌ For matching segments, generate a PNG (name, length)
+* ❌ Strava connect from the webapp
 
 ### Blockchain stuff
 
@@ -75,5 +77,5 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ## To Do
 
-* Test `SegmentRepository`: https://stackoverflow.com/a/67050072/7592456
+* Test Repositories: https://stackoverflow.com/a/67050072/7592456
 * Add e2e tests: https://docs.nestjs.com/fundamentals/testing#end-to-end-testing

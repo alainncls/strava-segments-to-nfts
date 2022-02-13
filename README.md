@@ -74,3 +74,6 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ❌ When a collection is completed, generate a "GOLD" NFT
 
 ## To Do
+
+* Test `SegmentRepository`: https://stackoverflow.com/a/67050072/7592456
+* Add e2e tests: https://docs.nestjs.com/fundamentals/testing#end-to-end-testing

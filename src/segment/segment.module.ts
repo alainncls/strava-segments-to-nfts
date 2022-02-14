@@ -9,6 +9,7 @@ import {SegmentRepository} from "./segment.repository";
     controllers: [SegmentController],
     imports: [MongooseModule.forFeature([{name: 'Segment', schema: SegmentSchema}])],
     providers: [SegmentService, SegmentRepository],
+    exports: [SegmentService],
 })
 export class SegmentModule {
 }

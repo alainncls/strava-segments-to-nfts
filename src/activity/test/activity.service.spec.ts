@@ -3,6 +3,8 @@ import {ActivityService} from "../activity.service";
 import {ActivityRepository} from "../activity.repository";
 import {HttpException} from "@nestjs/common";
 import {StravaService} from "../strava.service";
+import {PictureService} from "../picture.service";
+import {SegmentService} from "../../segment/segment.service";
 
 describe('ActivityService', () => {
     let service: ActivityService;
@@ -40,6 +42,25 @@ describe('ActivityService', () => {
         getActivityFromStrava: jest.fn().mockResolvedValue(stravaActivity)
     };
 
+    const mockPictureService = {
+        generatePictureFromSegment: jest.fn()
+    };
+
+    const testSegment = {
+        segment: {
+            id: 'ID',
+            stravaId: 123456,
+            name: 'SEGMENT_NAME',
+            length: 17
+        }
+    };
+
+    const mockSegmentService = {
+        findAll: jest.fn(() => {
+            return [testSegment];
+        })
+    };
+
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
@@ -51,6 +72,14 @@ describe('ActivityService', () => {
                 {
                     provide: StravaService,
                     useValue: mockStravaService,
+                },
+                {
+                    provide: PictureService,
+                    useValue: mockPictureService,
+                },
+                {
+                    provide: SegmentService,
+                    useValue: mockSegmentService,
                 }
             ],
         }).compile();

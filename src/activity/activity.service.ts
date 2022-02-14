@@ -4,11 +4,15 @@ import {Activity} from "./schemas/activity.schema";
 import {ActivityRepository} from "./activity.repository";
 import {StravaService} from "./strava.service";
 import {CreateActivityDto} from "./dto";
+import {PictureService} from "./picture.service";
+import {SegmentService} from "../segment/segment.service";
 
 @Injectable()
 export class ActivityService {
     constructor(private readonly repository: ActivityRepository,
-                private readonly stravaService: StravaService) {
+                private readonly stravaService: StravaService,
+                private readonly pictureService: PictureService,
+                private readonly segmentService: SegmentService) {
     }
 
     private static buildActivityRO(activity: Activity) {
@@ -40,6 +44,14 @@ export class ActivityService {
         const activityFromStrava = await this.stravaService.getActivityFromStrava(stravaId);
         const activityToSave = ActivityService.buildActivityFromStrava(activityFromStrava);
         const activitySaved = await this.repository.createOrUpdate(activityToSave);
+
+        // TODO: extract this check in SegmentService (using mongoose 'count' or 'exists')
+        const allAvailableSegments = await this.segmentService.findAll();
+        const allAvailableSegmentsIds = allAvailableSegments.map(segment => segment.segment.stravaId);
+        const matchingSegmentsIds = allAvailableSegmentsIds.filter(segmentStravaId => activitySaved.segmentsIds.includes(segmentStravaId));
+
+        matchingSegmentsIds.forEach(segmentId => this.pictureService.generatePictureFromSegment(segmentId));
+
         return ActivityService.buildActivityRO(activitySaved);
     }
 

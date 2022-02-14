@@ -63,7 +63,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ✔️ CRUD for these eligible segments
 * 🚧 Get a Strava activity via its ID (need to connect from a webapp to get a token)
 * ✔️ Extract new segments IDs from this activity
-* ❌ For matching segments, generate a PNG (name, length)
+* ✔️ For matching segments, generate a PNG (name, length)
 * ❌ Strava connect from the webapp
 
 ### Blockchain stuff
@@ -79,3 +79,6 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 * Test Repositories: https://stackoverflow.com/a/67050072/7592456
 * Add e2e tests: https://docs.nestjs.com/fundamentals/testing#end-to-end-testing
+* Extract `StravaService` in a dedicated module to be imported from `SegmentModule` an `ActivityModule`
+* Extract `PictureService` and its 'Utils` in a dedicated module
+* Extract the check for "segment is eligible" in `SegmentService`

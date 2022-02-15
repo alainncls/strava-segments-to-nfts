@@ -10,26 +10,26 @@ export class ActivityRepository {
     }
 
     async findAll(): Promise<Activity[]> {
-        return this.activityModel.find().exec();
+        return this.activityModel.find();
     }
 
     async createOrUpdate(activity: IActivityData): Promise<Activity> {
         if (await this.existByStravaId(activity.stravaId)) {
-            return this.activityModel.findOneAndUpdate({stravaId: activity.stravaId}, activity, {new: true}).exec()
+            return this.activityModel.findOneAndUpdate({stravaId: activity.stravaId}, activity, {new: true})
         } else {
             return (new this.activityModel(activity)).save();
         }
     }
 
     async delete(id: string) {
-        return this.activityModel.deleteOne({id}).exec();
+        return this.activityModel.deleteOne({id});
     }
 
     async findById(id: string): Promise<Activity> {
-        return this.activityModel.findById(id).exec();
+        return this.activityModel.findById(id);
     }
 
     async existByStravaId(stravaId: number): Promise<any> {
-        return this.activityModel.exists({stravaId}).exec();
+        return this.activityModel.exists({stravaId});
     }
 }

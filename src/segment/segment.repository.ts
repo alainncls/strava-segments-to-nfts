@@ -10,7 +10,7 @@ export class SegmentRepository {
     }
 
     async findAll(): Promise<Segment[]> {
-        return this.segmentModel.find().exec();
+        return this.segmentModel.find();
     }
 
     async create(segmentDto: CreateSegmentDto): Promise<Segment> {
@@ -18,14 +18,14 @@ export class SegmentRepository {
     }
 
     async update(id: string, segmentDto: CreateSegmentDto): Promise<Segment> {
-        return this.segmentModel.findByIdAndUpdate(id, segmentDto, {new: true}).exec();
+        return this.segmentModel.findByIdAndUpdate(id, segmentDto, {new: true});
     }
 
     async delete(id: string) {
-        return this.segmentModel.deleteOne({id}).exec();
+        return this.segmentModel.deleteOne({id});
     }
 
     async findById(id: string): Promise<Segment> {
-        return this.segmentModel.findById(id).exec();
+        return this.segmentModel.findById(id);
     }
 }

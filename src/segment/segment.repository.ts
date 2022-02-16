@@ -28,4 +28,8 @@ export class SegmentRepository {
     async findById(id: string): Promise<Segment> {
         return this.segmentModel.findById(id);
     }
+
+    async existByStravaId(stravaId: number): Promise<any> {
+        return this.segmentModel.exists({stravaId});
+    }
 }

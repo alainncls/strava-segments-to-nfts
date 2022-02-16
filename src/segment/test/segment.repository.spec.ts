@@ -64,4 +64,16 @@ describe('SegmentRepository', () => {
         await mockRepository.findById(segmentId);
         expect(spy).toBeCalled();
     });
+
+    it('should check if a segment exists', async () => {
+        const stravaId = 123456;
+        const segment = {
+            stravaId
+        };
+        const spy = jest
+            .spyOn(mockSegmentModel, 'exists')
+            .mockResolvedValue(segment as SegmentDocument);
+        await mockRepository.existByStravaId(stravaId);
+        expect(spy).toBeCalled();
+    });
 });

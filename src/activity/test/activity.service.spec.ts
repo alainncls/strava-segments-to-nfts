@@ -56,9 +56,8 @@ describe('ActivityService', () => {
     };
 
     const mockSegmentService = {
-        findAll: jest.fn(() => {
-            return [testSegment];
-        })
+        findAll: jest.fn(() => [testSegment]),
+        findExistingSegments: jest.fn(() => [123456, 654321])
     };
 
     beforeAll(async () => {

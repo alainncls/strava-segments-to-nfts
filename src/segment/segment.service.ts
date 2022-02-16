@@ -47,4 +47,14 @@ export class SegmentService {
 
         return SegmentService.buildSegmentRO(segment);
     }
+
+    async findExistingSegments(stravaIds: number[]): Promise<number[]> {
+        const segmentsChecks: Promise<boolean>[] = stravaIds.map(segmentStravaId => this.existByStravaId(segmentStravaId));
+        const checkResults = await Promise.all(segmentsChecks);
+        return stravaIds.filter((segmentStravaId, index) => checkResults[index]);
+    }
+
+    async existByStravaId(stravaId: number): Promise<boolean> {
+        return !!(await this.repository.existByStravaId(stravaId));
+    }
 }

@@ -45,11 +45,7 @@ export class ActivityService {
         const activityToSave = ActivityService.buildActivityFromStrava(activityFromStrava);
         const activitySaved = await this.repository.createOrUpdate(activityToSave);
 
-        // TODO: extract this check in SegmentService (using mongoose 'count' or 'exists')
-        const allAvailableSegments = await this.segmentService.findAll();
-        const allAvailableSegmentsIds = allAvailableSegments.map(segment => segment.segment.stravaId);
-        const matchingSegmentsIds = allAvailableSegmentsIds.filter(segmentStravaId => activitySaved.segmentsIds.includes(segmentStravaId));
-
+        const matchingSegmentsIds = await this.segmentService.findExistingSegments(activitySaved.segmentsIds);
         matchingSegmentsIds.forEach(segmentId => this.pictureService.generatePictureFromSegment(segmentId));
 
         return ActivityService.buildActivityRO(activitySaved);

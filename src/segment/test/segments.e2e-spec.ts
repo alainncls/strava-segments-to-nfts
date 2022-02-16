@@ -32,7 +32,7 @@ describe('Segments', () => {
         update: jest.fn((id, dto: CreateSegmentDto) => {
             return {
                 segment: {
-                    id: 'ID',
+                    id,
                     stravaId: dto.stravaId,
                     name: dto.name,
                     length: dto.length

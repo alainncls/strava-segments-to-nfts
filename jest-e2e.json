@@ -6,10 +6,10 @@
     "json"
   ],
   "transform": {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.(t|j)s$": "ts-jest"
   },
-  "testRegex": "/src/.*\\.(test|spec).(ts|tsx|js)$",
+  "testRegex": "/src/.*\\.(test|e2e-spec).(ts|tsx|js)$",
   "collectCoverageFrom" : ["src/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
-  "coverageDirectory": "./coverage-unit",
+  "coverageDirectory": "./coverage-e2e",
   "coverageReporters": ["json", "lcov"]
 }

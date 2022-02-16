@@ -9,9 +9,10 @@ import fs from 'fs';
 export class PictureService {
 
     async generatePictureFromSegment(stravaId: number): Promise<any> {
-        // FIXME: really temporary!
-        const stravaApi = new strava.client('XXX');
-        const segment = await stravaApi.segments.get({id: stravaId});
+        const segment = await strava.segments.get({
+            id: stravaId,
+            access_token: 'XXX'
+        });
 
         const segmentLight = {
             title: segment.name,
@@ -19,7 +20,7 @@ export class PictureService {
             type: PictureService.isKnownType(segment.activity_type) ? segment.activity_type : 'default',
             polyline: PolylineUtil.decode(segment.map.polyline)
         };
-        
+
         // Inspired by https://blog.logrocket.com/creating-saving-images-node-canvas/
         const titleText = formatTitle(segmentLight.title);
 

@@ -11,8 +11,11 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest --config=jest.json",
-    "test:watch": "jest --watch --config=jest.json",
-    "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage"
+    "test:watch": "jest --config=jest.json --watch",
+    "test:coverage": "jest --config=jest.json --coverage",
+    "test:e2e": "jest --config=jest-e2e.json",
+    "test:e2e:watch": "jest --config=jest-e2e.json --watch",
+    "test:e2e:coverage": "jest --config=jest-e2e.json --coverage"
   },
   "repository": "git@github.com:alainncls/strava-segments-to-nfts.git",
   "author": "Alain Nicolas",

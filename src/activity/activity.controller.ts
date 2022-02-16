@@ -20,7 +20,7 @@ export class ActivityController {
 
     @Post('/:stravaId')
     async createOrUpdateActivity(@Param() params): Promise<IActivityRO> {
-        return this.activityService.createOrUpdate(params.stravaId);
+        return this.activityService.createOrUpdate(Number(params.stravaId));
     }
 
     @Delete('/:id')

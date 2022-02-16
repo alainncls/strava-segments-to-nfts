@@ -77,7 +77,6 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ## To Do
 
-* Add e2e tests: https://docs.nestjs.com/fundamentals/testing#end-to-end-testing
 * Extract `StravaService` in a dedicated module to be imported from `SegmentModule` an `ActivityModule`
 * Extract `PictureService` and its 'Utils` in a dedicated module
 * Extract the check for "segment is eligible" in `SegmentService`

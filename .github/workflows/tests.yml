@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Source code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup NodeJS 16
         uses: actions/setup-node@v2

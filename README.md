@@ -8,17 +8,19 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ## How to launch
 
-### Start MongoDB
+### 1. Start MongoDB
 
     docker-compose up -d
 
-### Start the service
+### 2. Start the service
 
     npm run start
 
-### Start the service in development mode (watch)
+### 2.bis Start the service in development mode (watch)
 
     npm run start:dev
+
+## How to test
 
 ### Run tests
 
@@ -28,32 +30,21 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
     npm run test:watch
 
-## Technical notes
+## Technical notes/ideas
 
 ### Backend
 
-* [NestJS](https://docs.nestjs.com/)
-* Database: MongoDB
-* (ideas) Decode Strava's segment encoded polyline:
-    * [Leaflet](https://leafletjs.com/)
-    * [Mapbox](https://github.com/mapbox/polyline)
-    * [Google's Geometry library](https://developers.google.com/maps/documentation/javascript/geometry)
-* (notes) Convert Strava polyline to an image:
-    * https://www.markhneedham.com/blog/2017/04/29/leaflet-strava-polylines-osm/
-    * https://developers.google.com/maps/documentation/utilities/polylineutility
-    * https://github.com/jieter/Leaflet.encoded
-    * https://www.w3schools.com/graphics/svg_polyline.asp
+* Framework: [NestJS](https://docs.nestjs.com/)
+* Database: MongoDB accessed _via_ [Mongoose](https://mongoosejs.com/docs/guide.html)
+* Wrap Strava's API: [strava-v3](https://www.npmjs.com/package/strava-v3)
+* Decode Strava's segment encoded polyline: [polyline-encoded](https://github.com/jieter/Leaflet.encoded)
+* Generate an image: [canvas](https://github.com/Automattic/node-canvas) library, following [Sean Davis' blog post](https://blog.logrocket.com/creating-saving-images-node-canvas/)
+* Draw polyline on a canvas: [StackOverflow](https://stackoverflow.com/a/44469353/7592456)
 
 ### Frontend
 
-* React?
-* Implement Strava's OAuth2 flow: https://github.com/simov/grant
-
-### Strava API interaction
-
-* Use [strava-v3](https://www.npmjs.com/package/strava-v3)
-* [getActivityById](https://developers.strava.com/docs/reference/#api-Activities-getActivityById)
-* [getSegmentById](https://developers.strava.com/docs/reference/#api-Segments-getSegmentById)
+* Framework: React?
+* Implement Strava's OAuth2 flow: following sample from [simov](https://github.com/simov/grant)?
 
 ## Features ideas
 
@@ -77,6 +68,6 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ## To Do
 
-* Extract `StravaService` in a dedicated module to be imported from `SegmentModule` an `ActivityModule`
-* Extract `PictureService` and its 'Utils` in a dedicated module
-* Use the webapp's Strava token to make Strava API calls
+* ♻️ Extract `StravaService` in a dedicated module to be imported from `SegmentModule` an `ActivityModule`
+* ♻️ Extract `PictureService` and its 'Utils` in a dedicated module
+* ✨ Use the webapp's Strava token to make Strava API calls

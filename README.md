@@ -38,7 +38,8 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * Database: MongoDB accessed _via_ [Mongoose](https://mongoosejs.com/docs/guide.html)
 * Wrap Strava's API: [strava-v3](https://www.npmjs.com/package/strava-v3)
 * Decode Strava's segment encoded polyline: [polyline-encoded](https://github.com/jieter/Leaflet.encoded)
-* Generate an image: [canvas](https://github.com/Automattic/node-canvas) library, following [Sean Davis' blog post](https://blog.logrocket.com/creating-saving-images-node-canvas/)
+* Generate an image: [canvas](https://github.com/Automattic/node-canvas) library,
+  following [Sean Davis' blog post](https://blog.logrocket.com/creating-saving-images-node-canvas/)
 * Draw polyline on a canvas: [StackOverflow](https://stackoverflow.com/a/44469353/7592456)
 
 ### Frontend

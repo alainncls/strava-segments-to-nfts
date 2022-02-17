@@ -1,12 +1,11 @@
-import {IsNotEmpty} from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateActivityDto {
+  @IsNotEmpty()
+  readonly id: number;
 
-    @IsNotEmpty()
-    readonly id: number;
+  @IsNotEmpty()
+  readonly name: string;
 
-    @IsNotEmpty()
-    readonly name: string;
-
-    readonly segment_efforts: any[];
+  readonly segment_efforts: any[];
 }

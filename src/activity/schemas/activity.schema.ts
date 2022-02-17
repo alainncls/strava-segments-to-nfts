@@ -1,21 +1,20 @@
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Document} from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export type ActivityDocument = Activity & Document;
 
 @Schema()
 export class Activity {
+  _id: any;
 
-    _id: any;
+  @Prop()
+  stravaId: number;
 
-    @Prop()
-    stravaId: number;
+  @Prop()
+  name: string;
 
-    @Prop()
-    name: string;
-
-    @Prop()
-    segmentsIds: number[];
+  @Prop()
+  segmentsIds: number[];
 }
 
 export const ActivitySchema = SchemaFactory.createForClass(Activity);

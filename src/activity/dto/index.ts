@@ -1,1 +1,1 @@
-export {CreateActivityDto} from './create-activity.dto';
+export { CreateActivityDto } from './create-activity.dto';

@@ -22,13 +22,29 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ## How to test
 
-### Run tests
+### Run unit tests
 
     npm run test
 
-### Run tests with watch
+### Run unit tests with watch
 
     npm run test:watch
+
+### Run unit tests with coverage
+
+    npm run test:coverage
+
+### Run end-to-end tests
+
+    npm run test:e2e
+
+### Run end-to-end tests with watch
+
+    npm run test:e2e:watch
+
+### Run end-to-end tests with coverage
+
+    npm run test:e2e:coverage
 
 ## Technical notes/ideas
 

@@ -4,8 +4,8 @@ import { Activity } from './schemas/activity.schema';
 import { ActivityRepository } from './activity.repository';
 import { StravaService } from './strava.service';
 import { CreateActivityDto } from './dto';
-import { PictureService } from './picture.service';
 import { SegmentService } from '../segment/segment.service';
+import { PictureService } from '../picture/picture.service';
 
 @Injectable()
 export class ActivityService {
@@ -59,7 +59,9 @@ export class ActivityService {
       activitySaved.segmentsIds,
     );
     matchingSegmentsIds.forEach((segmentId) =>
-      this.pictureService.generatePictureFromSegment(segmentId),
+      this.pictureService.generatePictureFromSegment(
+        this.stravaService.getSegmentFromStrava(segmentId),
+      ),
     );
 
     return ActivityService.buildActivityRO(activitySaved);

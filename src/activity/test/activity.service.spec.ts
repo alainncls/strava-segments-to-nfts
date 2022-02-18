@@ -3,8 +3,8 @@ import { ActivityService } from '../activity.service';
 import { ActivityRepository } from '../activity.repository';
 import { HttpException } from '@nestjs/common';
 import { StravaService } from '../strava.service';
-import { PictureService } from '../picture.service';
 import { SegmentService } from '../../segment/segment.service';
+import { PictureService } from '../../picture/picture.service';
 
 describe('ActivityService', () => {
   let service: ActivityService;
@@ -20,6 +20,18 @@ describe('ActivityService', () => {
     id: 123456,
     name: 'NAME',
     segment_efforts: [{ segment: { id: 123456 } }, { segment: { id: 654321 } }],
+  };
+
+  const stravaSegment = {
+    _id: 'ID',
+    stravaId: 123456,
+    name: 'SEGMENT_NAME',
+    distance: 1706.4,
+    activity_type: 'Ride',
+    map: {
+      polyline:
+        '}g|eFnpqjVl@En@Md@HbAd@d@^h@Xx@VbARjBDh@OPQf@w@d@k@XKXDFPH\\EbGT`AV`@v@|@NTNb@?XOb@cAxAWLuE@eAFMBoAv@eBt@q@b@}@tAeAt@i@dAC`AFZj@dB?~@[h@MbAVn@b@b@\\d@Eh@Qb@_@d@eB|@c@h@WfBK|AMpA?VF\\\\t@f@t@h@j@|@b@hCb@b@XTd@Bl@GtA?jAL`ALp@Tr@RXd@Rx@Pn@^Zh@Tx@Zf@`@FTCzDy@f@Yx@m@n@Op@VJr@',
+    },
   };
 
   const resultActivity = {
@@ -40,6 +52,7 @@ describe('ActivityService', () => {
 
   const mockStravaService = {
     getActivityFromStrava: jest.fn().mockResolvedValue(stravaActivity),
+    getSegmentFromStrava: jest.fn().mockResolvedValue(stravaSegment),
   };
 
   const mockPictureService = {

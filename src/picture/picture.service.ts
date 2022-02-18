@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import strava from 'strava-v3';
 import { createCanvas, loadImage } from 'canvas';
-import { formatTitle } from './utils/format-title';
 import * as PolylineUtil from 'polyline-encoded';
 import fs from 'fs';
 
@@ -18,11 +16,50 @@ export class PictureService {
     return defaultTypes.includes(type);
   }
 
-  async generatePictureFromSegment(stravaId: number): Promise<any> {
-    const segment = await strava.segments.get({
-      id: stravaId,
-      access_token: 'XXX',
+  private formatTitle(title: string): string {
+    let output;
+    // If the title is 80 characters or longer, look to add ellipses at the end of the second line
+    if (title.length >= 80) {
+      const firstLine = this.getMaxNextLine(title);
+      const secondLine = this.getMaxNextLine(firstLine.remainingChars);
+      output = [firstLine.line];
+      let fmSecondLine = secondLine.line;
+      if (secondLine.remainingChars.length > 0) fmSecondLine += ' ...';
+      output.push(fmSecondLine);
+    }
+    // If 40 characters or longer, add the entire second line, using a max of half the characters, making the first line always slightly shorter than the second
+    else if (title.length >= 40) {
+      const firstLine = this.getMaxNextLine(title, title.length / 2);
+      output = [firstLine.line, firstLine.remainingChars];
+    }
+    // Otherwise, return the short title
+    else {
+      output = [title];
+    }
+
+    return output;
+  }
+
+  private getMaxNextLine(input, maxChars = 20) {
+    // Split the string into an array of words
+    const allWords = input.split(' ');
+    // Find the index in the words array at which we should stop, or we will exceed maximum characters
+    const lineIndex = allWords.reduce((prev, cur, index) => {
+      if (prev?.done) return prev;
+      const endLastWord = prev?.position || 0;
+      const position = endLastWord + 1 + cur.length;
+      return position >= maxChars ? { done: true, index } : { position, index };
     });
+    // Using the index, build a string for this line
+    const line = allWords.slice(0, lineIndex.index).join(' ');
+    // And determine what's left
+    const remainingChars = allWords.slice(lineIndex.index).join(' ');
+    // Return the result
+    return { line, remainingChars };
+  }
+
+  async generatePictureFromSegment(segmentPromise: Promise<any>): Promise<any> {
+    const segment = await segmentPromise;
 
     const segmentLight = {
       title: segment.name,
@@ -34,7 +71,7 @@ export class PictureService {
     };
 
     // Inspired by https://blog.logrocket.com/creating-saving-images-node-canvas/
-    const titleText = formatTitle(segmentLight.title);
+    const titleText = this.formatTitle(segmentLight.title);
 
     const width = 1920;
     const height = 1080;

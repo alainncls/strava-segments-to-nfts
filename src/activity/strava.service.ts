@@ -10,4 +10,11 @@ export class StravaService {
       access_token: 'XXX',
     });
   }
+
+  async getSegmentFromStrava(stravaId: number): Promise<any> {
+    return strava.segments.get({
+      id: stravaId,
+      access_token: 'XXX',
+    });
+  }
 }

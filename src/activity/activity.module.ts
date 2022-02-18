@@ -5,20 +5,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ActivitySchema } from './schemas/activity.schema';
 import { ActivityRepository } from './activity.repository';
 import { StravaService } from './strava.service';
-import { PictureService } from './picture.service';
 import { SegmentModule } from '../segment/segment.module';
+import { PictureModule } from '../picture/picture.module';
 
 @Module({
   controllers: [ActivityController],
   imports: [
     MongooseModule.forFeature([{ name: 'Activity', schema: ActivitySchema }]),
     SegmentModule,
+    PictureModule,
   ],
-  providers: [
-    ActivityService,
-    StravaService,
-    PictureService,
-    ActivityRepository,
-  ],
+  providers: [ActivityService, StravaService, ActivityRepository],
 })
 export class ActivityModule {}

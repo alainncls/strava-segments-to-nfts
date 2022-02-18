@@ -86,5 +86,4 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 ## To Do
 
 * ♻️ Extract `StravaService` in a dedicated module to be imported from `SegmentModule` an `ActivityModule`
-* ♻️ Extract `PictureService` and its 'Utils` in a dedicated module
 * ✨ Use the webapp's Strava token to make Strava API calls

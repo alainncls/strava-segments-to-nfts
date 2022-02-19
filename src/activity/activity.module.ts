@@ -4,9 +4,9 @@ import { ActivityService } from './activity.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ActivitySchema } from './schemas/activity.schema';
 import { ActivityRepository } from './activity.repository';
-import { StravaService } from './strava.service';
 import { SegmentModule } from '../segment/segment.module';
 import { PictureModule } from '../picture/picture.module';
+import { StravaModule } from '../strava/strava.module';
 
 @Module({
   controllers: [ActivityController],
@@ -14,7 +14,8 @@ import { PictureModule } from '../picture/picture.module';
     MongooseModule.forFeature([{ name: 'Activity', schema: ActivitySchema }]),
     SegmentModule,
     PictureModule,
+    StravaModule,
   ],
-  providers: [ActivityService, StravaService, ActivityRepository],
+  providers: [ActivityService, ActivityRepository],
 })
 export class ActivityModule {}

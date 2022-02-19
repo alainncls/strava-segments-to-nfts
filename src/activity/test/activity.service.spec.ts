@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ActivityService } from '../activity.service';
 import { ActivityRepository } from '../activity.repository';
 import { HttpException } from '@nestjs/common';
-import { StravaService } from '../strava.service';
 import { SegmentService } from '../../segment/segment.service';
 import { PictureService } from '../../picture/picture.service';
+import { StravaService } from '../../strava/strava.service';
 
 describe('ActivityService', () => {
   let service: ActivityService;

@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Headers, Param, Post } from '@nestjs/common';
 import { ActivityService } from './activity.service';
 import { IActivityRO } from './activity.interface';
 
@@ -17,8 +17,14 @@ export class ActivityController {
   }
 
   @Post('/:stravaId')
-  async createOrUpdateActivity(@Param() params): Promise<IActivityRO> {
-    return this.activityService.createOrUpdate(Number(params.stravaId));
+  async createOrUpdateActivity(
+    @Headers('x-strava-token') stravaToken,
+    @Param() params,
+  ): Promise<IActivityRO> {
+    return this.activityService.createOrUpdate(
+      stravaToken,
+      Number(params.stravaId),
+    );
   }
 
   @Delete('/:id')

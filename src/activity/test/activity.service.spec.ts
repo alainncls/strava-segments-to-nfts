@@ -108,7 +108,9 @@ describe('ActivityService', () => {
   });
 
   it('should create or update an activity', async () => {
-    expect(await service.createOrUpdate(123456)).toEqual(resultActivity);
+    expect(await service.createOrUpdate('STRAVA_TOKEN', 123456)).toEqual(
+      resultActivity,
+    );
   });
 
   it('should delete an activity', async () => {

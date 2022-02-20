@@ -3,18 +3,24 @@ import strava from 'strava-v3';
 
 @Injectable()
 export class StravaService {
-  async getActivityFromStrava(stravaId: number): Promise<any> {
+  async getActivityFromStrava(
+    stravaToken: string,
+    stravaId: number,
+  ): Promise<any> {
     return strava.activities.get({
       id: stravaId,
       include_all_efforts: true,
-      access_token: 'XXX',
+      access_token: stravaToken,
     });
   }
 
-  async getSegmentFromStrava(stravaId: number): Promise<any> {
+  async getSegmentFromStrava(
+    stravaToken: string,
+    stravaId: number,
+  ): Promise<any> {
     return strava.segments.get({
       id: stravaId,
-      access_token: 'XXX',
+      access_token: stravaToken,
     });
   }
 }

@@ -18,7 +18,7 @@ describe('ActivityController', () => {
     findAll: jest.fn(() => {
       return [testActivity];
     }),
-    createOrUpdate: jest.fn((stravaId: number) => {
+    createOrUpdate: jest.fn((stravaToken: string, stravaId: number) => {
       return {
         activity: {
           id: 'ID',
@@ -67,7 +67,12 @@ describe('ActivityController', () => {
 
   it('should create or update an activity', async () => {
     expect(
-      await controller.createOrUpdateActivity({ stravaId: 123456 }),
+      await controller.createOrUpdateActivity(
+        { 'x-strava-token': 'STRAVA_TOKEN' },
+        {
+          stravaId: 123456,
+        },
+      ),
     ).toEqual(testActivity);
   });
 

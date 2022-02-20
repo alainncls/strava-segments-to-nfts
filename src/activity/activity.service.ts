@@ -47,8 +47,12 @@ export class ActivityService {
     );
   }
 
-  async createOrUpdate(stravaId: number): Promise<IActivityRO> {
+  async createOrUpdate(
+    stravaToken: string,
+    stravaId: number,
+  ): Promise<IActivityRO> {
     const activityFromStrava = await this.stravaService.getActivityFromStrava(
+      stravaToken,
       stravaId,
     );
     const activityToSave =
@@ -60,7 +64,7 @@ export class ActivityService {
     );
     matchingSegmentsIds.forEach((segmentId) =>
       this.pictureService.generatePictureFromSegment(
-        this.stravaService.getSegmentFromStrava(segmentId),
+        this.stravaService.getSegmentFromStrava(stravaToken, segmentId),
       ),
     );
 

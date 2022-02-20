@@ -19,7 +19,7 @@ describe('Activities', () => {
         },
       ];
     }),
-    createOrUpdate: jest.fn((stravaId: number) => {
+    createOrUpdate: jest.fn((stravaToken: string, stravaId: number) => {
       return {
         activity: {
           id: 'ID',
@@ -76,8 +76,9 @@ describe('Activities', () => {
   it(`/POST activities`, () => {
     return request(app.getHttpServer())
       .post('/activities/123456')
+      .set('x-strava-token', 'STRAVA_TOKEN')
       .expect(201)
-      .expect(mockActivityService.createOrUpdate(123456));
+      .expect(mockActivityService.createOrUpdate('STRAVA_TOKEN', 123456));
   });
 
   it(`/DELETE activities/ID`, () => {

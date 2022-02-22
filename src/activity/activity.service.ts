@@ -22,6 +22,7 @@ export class ActivityService {
       stravaId: activity.stravaId,
       name: activity.name,
       segmentsIds: activity.segmentsIds,
+      matchingSegmentsIds: activity.matchingSegmentsIds,
     };
 
     return { activity: activityRO };
@@ -37,6 +38,7 @@ export class ActivityService {
       segmentsIds: activityDto.segment_efforts.map(
         (segmentEffort) => segmentEffort.segment.id,
       ),
+      matchingSegmentsIds: [],
     };
   }
 
@@ -57,10 +59,9 @@ export class ActivityService {
     );
     const activityToSave =
       ActivityService.buildActivityFromStrava(activityFromStrava);
-    const activitySaved = await this.repository.createOrUpdate(activityToSave);
 
     const matchingSegmentsIds = await this.segmentService.findExistingSegments(
-      activitySaved.segmentsIds,
+      activityToSave.segmentsIds,
     );
     matchingSegmentsIds.forEach((segmentId) =>
       this.pictureService.generatePictureFromSegment(
@@ -68,6 +69,9 @@ export class ActivityService {
       ),
     );
 
+    activityToSave.matchingSegmentsIds = matchingSegmentsIds;
+
+    const activitySaved = await this.repository.createOrUpdate(activityToSave);
     return ActivityService.buildActivityRO(activitySaved);
   }
 

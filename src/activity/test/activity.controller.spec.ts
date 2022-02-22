@@ -11,6 +11,7 @@ describe('ActivityController', () => {
       stravaId: 123456,
       name: 'NAME',
       segmentsIds: [123456, 654321],
+      matchingSegmentsIds: [654321],
     },
   };
 
@@ -25,6 +26,7 @@ describe('ActivityController', () => {
           stravaId: stravaId,
           name: 'NAME',
           segmentsIds: [123456, 654321],
+          matchingSegmentsIds: [654321],
         },
       };
     }),
@@ -39,6 +41,7 @@ describe('ActivityController', () => {
               stravaId: 123456,
               name: 'NAME',
               segmentsIds: [123456, 654321],
+              matchingSegmentsIds: [654321],
             },
           }
         : { Activity: ' not found' };

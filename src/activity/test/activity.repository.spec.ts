@@ -43,6 +43,7 @@ describe('ActivityRepository', () => {
       stravaId: 123456,
       name: 'NAME',
       segmentsIds: [123, 456],
+      matchingSegmentsIds: [456],
     };
     const spyExists = jest
       .spyOn(mockActivityModel, 'exists')

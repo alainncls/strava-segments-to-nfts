@@ -15,6 +15,9 @@ export class Activity {
 
   @Prop()
   segmentsIds: number[];
+
+  @Prop()
+  matchingSegmentsIds: number[];
 }
 
 export const ActivitySchema = SchemaFactory.createForClass(Activity);

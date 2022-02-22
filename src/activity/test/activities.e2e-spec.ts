@@ -14,7 +14,8 @@ describe('Activities', () => {
             id: 'ID',
             stravaId: 123456,
             name: 'ACTIVITY_NAME',
-            length: 17,
+            segmentsIds: [123456, 654321],
+            matchingSegmentsIds: [654321],
           },
         },
       ];
@@ -26,6 +27,7 @@ describe('Activities', () => {
           stravaId: stravaId,
           name: 'NAME',
           segmentsIds: [123456, 654321],
+          matchingSegmentsIds: [654321],
         },
       };
     }),
@@ -40,6 +42,7 @@ describe('Activities', () => {
               stravaId: 123456,
               name: 'NAME',
               segmentsIds: [123456, 654321],
+              matchingSegmentsIds: [654321],
             },
           }
         : { Activity: ' not found' };

@@ -3,6 +3,7 @@ export interface IActivityData {
   stravaId: number;
   name: string;
   segmentsIds: number[];
+  matchingSegmentsIds: number[];
 }
 
 export interface IActivityRO {

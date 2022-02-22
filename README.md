@@ -72,7 +72,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ✔️ Get a Strava activity via its ID
 * ✔️ Extract new segments IDs from this activity
 * ✔️ For matching segments, generate a PNG (name, length)
-* ❌ Strava connect from the webapp
+* ✔️ Strava connect from the webapp
 
 ### Blockchain stuff
 
@@ -84,5 +84,3 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ❌ When a collection is completed, generate a "GOLD" NFT
 
 ## To Do
-
-* ✨ Use the webapp's Strava token to make Strava API calls

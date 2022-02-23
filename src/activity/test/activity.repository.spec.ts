@@ -18,9 +18,7 @@ describe('ActivityRepository', () => {
         ActivityRepository,
       ],
     }).compile();
-    mockActivityModel = module.get<Model<ActivityDocument>>(
-      getModelToken('Activity'),
-    );
+    mockActivityModel = module.get<Model<ActivityDocument>>(getModelToken('Activity'));
     mockRepository = module.get<ActivityRepository>(ActivityRepository);
   });
 
@@ -30,9 +28,7 @@ describe('ActivityRepository', () => {
 
   it('should find all activities', async () => {
     const activity = new Activity();
-    const spy = jest
-      .spyOn(mockActivityModel, 'find')
-      .mockResolvedValue([activity] as ActivityDocument[]);
+    const spy = jest.spyOn(mockActivityModel, 'find').mockResolvedValue([activity] as ActivityDocument[]);
     await mockRepository.findAll();
     expect(spy).toBeCalled();
   });
@@ -44,13 +40,10 @@ describe('ActivityRepository', () => {
       name: 'NAME',
       segmentsIds: [123, 456],
       matchingSegmentsIds: [456],
+      segmentsPictures: [],
     };
-    const spyExists = jest
-      .spyOn(mockActivityModel, 'exists')
-      .mockResolvedValue(activity as ActivityDocument);
-    const spy = jest
-      .spyOn(mockActivityModel, 'findOneAndUpdate')
-      .mockResolvedValue(activity as ActivityDocument);
+    const spyExists = jest.spyOn(mockActivityModel, 'exists').mockResolvedValue(activity as ActivityDocument);
+    const spy = jest.spyOn(mockActivityModel, 'findOneAndUpdate').mockResolvedValue(activity as ActivityDocument);
     await mockRepository.createOrUpdate(activity);
     expect(spyExists).toBeCalled();
     expect(spy).toBeCalled();
@@ -59,9 +52,7 @@ describe('ActivityRepository', () => {
   it('should delete an activity', async () => {
     const response = { deletedCount: 1 };
     const activityId = 'ID';
-    const spy = jest
-      .spyOn(mockActivityModel, 'deleteOne')
-      .mockResolvedValue(response as any);
+    const spy = jest.spyOn(mockActivityModel, 'deleteOne').mockResolvedValue(response as any);
     await mockRepository.delete(activityId);
     expect(spy).toBeCalled();
   });
@@ -69,9 +60,7 @@ describe('ActivityRepository', () => {
   it('should find an activity by its ID', async () => {
     const activity = new Activity();
     const activityId = 'ID';
-    const spy = jest
-      .spyOn(mockActivityModel, 'findById')
-      .mockResolvedValue(activity as ActivityDocument);
+    const spy = jest.spyOn(mockActivityModel, 'findById').mockResolvedValue(activity as ActivityDocument);
     await mockRepository.findById(activityId);
     expect(spy).toBeCalled();
   });

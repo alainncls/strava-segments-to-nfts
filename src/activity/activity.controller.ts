@@ -17,14 +17,8 @@ export class ActivityController {
   }
 
   @Post('/:stravaId')
-  async createOrUpdateActivity(
-    @Headers('x-strava-token') stravaToken,
-    @Param() params,
-  ): Promise<IActivityRO> {
-    return this.activityService.createOrUpdate(
-      stravaToken,
-      Number(params.stravaId),
-    );
+  async createOrUpdateActivity(@Headers('x-strava-token') stravaToken, @Param() params): Promise<IActivityRO> {
+    return this.activityService.createOrUpdate(stravaToken, Number(params.stravaId));
   }
 
   @Delete('/:id')

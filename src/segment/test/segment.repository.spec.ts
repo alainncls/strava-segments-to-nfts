@@ -18,9 +18,7 @@ describe('SegmentRepository', () => {
         SegmentRepository,
       ],
     }).compile();
-    mockSegmentModel = module.get<Model<SegmentDocument>>(
-      getModelToken('Segment'),
-    );
+    mockSegmentModel = module.get<Model<SegmentDocument>>(getModelToken('Segment'));
     mockRepository = module.get<SegmentRepository>(SegmentRepository);
   });
 
@@ -30,9 +28,7 @@ describe('SegmentRepository', () => {
 
   it('should find all segments', async () => {
     const segment = new Segment();
-    const spy = jest
-      .spyOn(mockSegmentModel, 'find')
-      .mockResolvedValue([segment] as SegmentDocument[]);
+    const spy = jest.spyOn(mockSegmentModel, 'find').mockResolvedValue([segment] as SegmentDocument[]);
     await mockRepository.findAll();
     expect(spy).toBeCalled();
   });
@@ -40,9 +36,7 @@ describe('SegmentRepository', () => {
   it('should update a segment', async () => {
     const segment = new Segment();
     const segmentId = 'ID';
-    const spy = jest
-      .spyOn(mockSegmentModel, 'findByIdAndUpdate')
-      .mockResolvedValue(segment as SegmentDocument);
+    const spy = jest.spyOn(mockSegmentModel, 'findByIdAndUpdate').mockResolvedValue(segment as SegmentDocument);
     await mockRepository.update(segmentId, segment);
     expect(spy).toBeCalled();
   });
@@ -50,9 +44,7 @@ describe('SegmentRepository', () => {
   it('should delete a segment', async () => {
     const response = { deletedCount: 1 };
     const segmentId = 'ID';
-    const spy = jest
-      .spyOn(mockSegmentModel, 'deleteOne')
-      .mockResolvedValue(response as any);
+    const spy = jest.spyOn(mockSegmentModel, 'deleteOne').mockResolvedValue(response as any);
     await mockRepository.delete(segmentId);
     expect(spy).toBeCalled();
   });
@@ -60,9 +52,7 @@ describe('SegmentRepository', () => {
   it('should find a segment by its ID', async () => {
     const segment = new Segment();
     const segmentId = 'ID';
-    const spy = jest
-      .spyOn(mockSegmentModel, 'findById')
-      .mockResolvedValue(segment as SegmentDocument);
+    const spy = jest.spyOn(mockSegmentModel, 'findById').mockResolvedValue(segment as SegmentDocument);
     await mockRepository.findById(segmentId);
     expect(spy).toBeCalled();
   });
@@ -72,9 +62,7 @@ describe('SegmentRepository', () => {
     const segment = {
       stravaId,
     };
-    const spy = jest
-      .spyOn(mockSegmentModel, 'exists')
-      .mockResolvedValue(segment as SegmentDocument);
+    const spy = jest.spyOn(mockSegmentModel, 'exists').mockResolvedValue(segment as SegmentDocument);
     await mockRepository.existByStravaId(stravaId);
     expect(spy).toBeCalled();
   });

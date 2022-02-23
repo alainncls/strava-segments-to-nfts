@@ -70,10 +70,7 @@ describe('Segments', () => {
   });
 
   it(`/GET segments`, () => {
-    return request(app.getHttpServer())
-      .get('/segments')
-      .expect(200)
-      .expect(mockSegmentService.findAll());
+    return request(app.getHttpServer()).get('/segments').expect(200).expect(mockSegmentService.findAll());
   });
 
   it(`/POST segments`, () => {
@@ -103,10 +100,7 @@ describe('Segments', () => {
   });
 
   it(`/DELETE segments/ID`, () => {
-    return request(app.getHttpServer())
-      .delete('/segments/ID')
-      .expect(200)
-      .expect(mockSegmentService.delete());
+    return request(app.getHttpServer()).delete('/segments/ID').expect(200).expect(mockSegmentService.delete());
   });
 
   afterAll(async () => {

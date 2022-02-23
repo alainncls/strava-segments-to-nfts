@@ -63,17 +63,11 @@ describe('Activities', () => {
   });
 
   it(`/GET activities`, () => {
-    return request(app.getHttpServer())
-      .get('/activities')
-      .expect(200)
-      .expect(mockActivityService.findAll());
+    return request(app.getHttpServer()).get('/activities').expect(200).expect(mockActivityService.findAll());
   });
 
   it(`/GET activity`, () => {
-    return request(app.getHttpServer())
-      .get('/activities/ID')
-      .expect(200)
-      .expect(mockActivityService.findById('ID'));
+    return request(app.getHttpServer()).get('/activities/ID').expect(200).expect(mockActivityService.findById('ID'));
   });
 
   it(`/POST activities`, () => {
@@ -85,10 +79,7 @@ describe('Activities', () => {
   });
 
   it(`/DELETE activities/ID`, () => {
-    return request(app.getHttpServer())
-      .delete('/activities/ID')
-      .expect(200)
-      .expect(mockActivityService.delete());
+    return request(app.getHttpServer()).delete('/activities/ID').expect(200).expect(mockActivityService.delete());
   });
 
   afterAll(async () => {

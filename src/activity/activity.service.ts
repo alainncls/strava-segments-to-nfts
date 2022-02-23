@@ -23,53 +23,43 @@ export class ActivityService {
       name: activity.name,
       segmentsIds: activity.segmentsIds,
       matchingSegmentsIds: activity.matchingSegmentsIds,
+      segmentsPictures: activity.segmentsPictures,
     };
 
     return { activity: activityRO };
   }
 
-  private static buildActivityFromStrava(
-    activityDto: CreateActivityDto,
-  ): IActivityData {
+  private static buildActivityFromStrava(activityDto: CreateActivityDto): IActivityData {
     return {
       id: undefined,
       stravaId: activityDto.id,
       name: activityDto.name,
-      segmentsIds: activityDto.segment_efforts.map(
-        (segmentEffort) => segmentEffort.segment.id,
-      ),
+      segmentsIds: [...new Set(activityDto.segment_efforts.map((segmentEffort) => segmentEffort.segment.id))],
       matchingSegmentsIds: [],
+      segmentsPictures: [],
     };
   }
 
   async findAll(): Promise<IActivityRO[]> {
     const activities = await this.repository.findAll();
-    return activities.map((activity) =>
-      ActivityService.buildActivityRO(activity),
-    );
+    return activities.map((activity) => ActivityService.buildActivityRO(activity));
   }
 
-  async createOrUpdate(
-    stravaToken: string,
-    stravaId: number,
-  ): Promise<IActivityRO> {
-    const activityFromStrava = await this.stravaService.getActivityFromStrava(
-      stravaToken,
-      stravaId,
-    );
-    const activityToSave =
-      ActivityService.buildActivityFromStrava(activityFromStrava);
+  async createOrUpdate(stravaToken: string, stravaId: number): Promise<IActivityRO> {
+    const activityFromStrava = await this.stravaService.getActivityFromStrava(stravaToken, stravaId);
+    const activityToSave = ActivityService.buildActivityFromStrava(activityFromStrava);
 
-    const matchingSegmentsIds = await this.segmentService.findExistingSegments(
-      activityToSave.segmentsIds,
-    );
-    matchingSegmentsIds.forEach((segmentId) =>
-      this.pictureService.generatePictureFromSegment(
-        this.stravaService.getSegmentFromStrava(stravaToken, segmentId),
-      ),
-    );
+    const matchingSegmentsIds = await this.segmentService.findExistingSegments(activityToSave.segmentsIds);
+    const generatedPictures = [];
+
+    matchingSegmentsIds.forEach((segmentId) => {
+      generatedPictures.push(
+        this.pictureService.generatePictureFromSegment(this.stravaService.getSegmentFromStrava(stravaToken, segmentId)),
+      );
+    });
 
     activityToSave.matchingSegmentsIds = matchingSegmentsIds;
+    activityToSave.segmentsPictures = await Promise.all(generatedPictures);
 
     const activitySaved = await this.repository.createOrUpdate(activityToSave);
     return ActivityService.buildActivityRO(activitySaved);

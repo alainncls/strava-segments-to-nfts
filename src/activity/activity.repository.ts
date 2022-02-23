@@ -6,9 +6,7 @@ import { IActivityData } from './activity.interface';
 
 @Injectable()
 export class ActivityRepository {
-  constructor(
-    @InjectModel('Activity') private activityModel: Model<ActivityDocument>,
-  ) {}
+  constructor(@InjectModel('Activity') private activityModel: Model<ActivityDocument>) {}
 
   async findAll(): Promise<Activity[]> {
     return this.activityModel.find();
@@ -16,11 +14,7 @@ export class ActivityRepository {
 
   async createOrUpdate(activity: IActivityData): Promise<Activity> {
     if (await this.existByStravaId(activity.stravaId)) {
-      return this.activityModel.findOneAndUpdate(
-        { stravaId: activity.stravaId },
-        activity,
-        { new: true },
-      );
+      return this.activityModel.findOneAndUpdate({ stravaId: activity.stravaId }, activity, { new: true });
     } else {
       return new this.activityModel(activity).save();
     }

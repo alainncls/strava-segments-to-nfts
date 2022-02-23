@@ -4,6 +4,7 @@ export interface IActivityData {
   name: string;
   segmentsIds: number[];
   matchingSegmentsIds: number[];
+  segmentsPictures: any[];
 }
 
 export interface IActivityRO {

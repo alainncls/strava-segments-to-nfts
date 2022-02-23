@@ -25,15 +25,11 @@ export class SegmentService {
   }
 
   async create(segmentDto: CreateSegmentDto): Promise<ISegmentRO> {
-    return SegmentService.buildSegmentRO(
-      await this.repository.create(segmentDto),
-    );
+    return SegmentService.buildSegmentRO(await this.repository.create(segmentDto));
   }
 
   async update(id: string, segmentDto: CreateSegmentDto): Promise<ISegmentRO> {
-    return SegmentService.buildSegmentRO(
-      await this.repository.update(id, segmentDto),
-    );
+    return SegmentService.buildSegmentRO(await this.repository.update(id, segmentDto));
   }
 
   async delete(id: string) {
@@ -52,8 +48,8 @@ export class SegmentService {
   }
 
   async findExistingSegments(stravaIds: number[]): Promise<number[]> {
-    const segmentsChecks: Promise<boolean>[] = stravaIds.map(
-      (segmentStravaId) => this.existByStravaId(segmentStravaId),
+    const segmentsChecks: Promise<boolean>[] = stravaIds.map((segmentStravaId) =>
+      this.existByStravaId(segmentStravaId),
     );
     const checkResults = await Promise.all(segmentsChecks);
     return stravaIds.filter((segmentStravaId, index) => checkResults[index]);

@@ -6,9 +6,7 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class SegmentRepository {
-  constructor(
-    @InjectModel('Segment') private segmentModel: Model<SegmentDocument>,
-  ) {}
+  constructor(@InjectModel('Segment') private segmentModel: Model<SegmentDocument>) {}
 
   async findAll(): Promise<Segment[]> {
     return this.segmentModel.find();

@@ -14,6 +14,8 @@ describe('ActivityService', () => {
     stravaId: 123456,
     name: 'NAME',
     segmentsIds: [123456, 654321],
+    matchingSegmentsIds: [654321],
+    segmentsPictures: [],
   };
 
   const stravaActivity = {
@@ -40,6 +42,8 @@ describe('ActivityService', () => {
       stravaId: 123456,
       name: 'NAME',
       segmentsIds: [123456, 654321],
+      matchingSegmentsIds: [654321],
+      segmentsPictures: [],
     },
   };
 
@@ -108,9 +112,7 @@ describe('ActivityService', () => {
   });
 
   it('should create or update an activity', async () => {
-    expect(await service.createOrUpdate('STRAVA_TOKEN', 123456)).toEqual(
-      resultActivity,
-    );
+    expect(await service.createOrUpdate('STRAVA_TOKEN', 123456)).toEqual(resultActivity);
   });
 
   it('should delete an activity', async () => {

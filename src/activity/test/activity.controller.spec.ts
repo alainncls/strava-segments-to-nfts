@@ -12,6 +12,7 @@ describe('ActivityController', () => {
       name: 'NAME',
       segmentsIds: [123456, 654321],
       matchingSegmentsIds: [654321],
+      segmentsPictures: [],
     },
   };
 
@@ -27,6 +28,7 @@ describe('ActivityController', () => {
           name: 'NAME',
           segmentsIds: [123456, 654321],
           matchingSegmentsIds: [654321],
+          segmentsPictures: [],
         },
       };
     }),
@@ -42,6 +44,7 @@ describe('ActivityController', () => {
               name: 'NAME',
               segmentsIds: [123456, 654321],
               matchingSegmentsIds: [654321],
+              segmentsPictures: [],
             },
           }
         : { Activity: ' not found' };

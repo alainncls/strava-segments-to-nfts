@@ -25,9 +25,7 @@ describe('SegmentService', () => {
   const mockSegmentRepository = {
     findAll: jest.fn().mockResolvedValue([repoSegment]),
     create: jest.fn().mockResolvedValue(repoSegment),
-    update: jest
-      .fn()
-      .mockResolvedValue({ ...repoSegment, name: 'NEW_SEGMENT_NAME' }),
+    update: jest.fn().mockResolvedValue({ ...repoSegment, name: 'NEW_SEGMENT_NAME' }),
     delete: jest.fn().mockResolvedValue({ deleteCount: 1 }),
     findById: jest.fn().mockResolvedValue(repoSegment),
     existByStravaId: jest.fn().mockResolvedValue({ _id: 123 }),
@@ -100,10 +98,7 @@ describe('SegmentService', () => {
   });
 
   it('should check if a list of segments exist by their Strava ID', async () => {
-    mockSegmentRepository.existByStravaId = jest
-      .fn()
-      .mockResolvedValueOnce(null)
-      .mockResolvedValueOnce({ _id: 456 });
+    mockSegmentRepository.existByStravaId = jest.fn().mockResolvedValueOnce(null).mockResolvedValueOnce({ _id: 456 });
     expect(await service.findExistingSegments([123, 456])).toEqual([456]);
   });
 });

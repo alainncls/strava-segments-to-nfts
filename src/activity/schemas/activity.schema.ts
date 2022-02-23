@@ -18,6 +18,9 @@ export class Activity {
 
   @Prop()
   matchingSegmentsIds: number[];
+
+  @Prop()
+  segmentsPictures: any[];
 }
 
 export const ActivitySchema = SchemaFactory.createForClass(Activity);

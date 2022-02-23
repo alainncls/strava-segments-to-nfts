@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PictureService } from '../picture.service';
-import fs from 'fs';
+import { Canvas } from 'canvas';
 
 describe('PictureService', () => {
   let service: PictureService;
@@ -17,7 +17,7 @@ describe('PictureService', () => {
     },
   };
 
-  jest.mock('fs');
+  const mockCanvas = jest.fn();
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -25,8 +25,7 @@ describe('PictureService', () => {
     }).compile();
 
     service = module.get<PictureService>(PictureService);
-
-    fs.writeFileSync = jest.fn();
+    Canvas.prototype.toDataURL = mockCanvas;
   });
 
   afterEach(() => {});
@@ -37,10 +36,6 @@ describe('PictureService', () => {
 
   it('should generate a picture from a Strava segment', async () => {
     await service.generatePictureFromSegment(Promise.resolve(stravaSegment));
-    expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
-    expect(fs.writeFileSync).toHaveBeenCalledWith(
-      `./${stravaSegment.name}.png`,
-      expect.anything(),
-    );
+    expect(mockCanvas).toHaveBeenCalledTimes(1);
   });
 });

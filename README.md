@@ -60,8 +60,11 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ### Frontend
 
-* Framework: React?
-* Implement Strava's OAuth2 flow: following sample from [simov](https://github.com/simov/grant)?
+* Framework: React
+
+### Blockchain
+
+* [Create NFTs with JS](https://blog.logrocket.com/how-to-create-nfts-with-javascript/)
 
 ## Features ideas
 
@@ -77,6 +80,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 ### Blockchain stuff
 
 * ❌ Make an NFT from this PNG
+* ❌ Upload image to IPFS
 
 ### Advanced stuff
 

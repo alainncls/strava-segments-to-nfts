@@ -5,9 +5,11 @@ import { HttpException } from '@nestjs/common';
 import { SegmentService } from '../../segment/segment.service';
 import { PictureService } from '../../picture/picture.service';
 import { StravaService } from '../../strava/strava.service';
+import { IpfsService } from '../../picture/ipfs.service';
 
 describe('ActivityService', () => {
   let service: ActivityService;
+  const cid = 'ipfs cid';
 
   const repoActivity = {
     _id: 'ID',
@@ -15,7 +17,7 @@ describe('ActivityService', () => {
     name: 'NAME',
     segmentsIds: [123456, 654321],
     matchingSegmentsIds: [654321],
-    segmentsPictures: [],
+    segmentsPictures: [cid],
   };
 
   const stravaActivity = {
@@ -43,7 +45,7 @@ describe('ActivityService', () => {
       name: 'NAME',
       segmentsIds: [123456, 654321],
       matchingSegmentsIds: [654321],
-      segmentsPictures: [],
+      segmentsPictures: [cid],
     },
   };
 
@@ -77,6 +79,10 @@ describe('ActivityService', () => {
     findExistingSegments: jest.fn(() => [123456, 654321]),
   };
 
+  const mockIpfsService = {
+    uploadToIpfs: jest.fn(() => cid),
+  };
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -96,6 +102,10 @@ describe('ActivityService', () => {
         {
           provide: SegmentService,
           useValue: mockSegmentService,
+        },
+        {
+          provide: IpfsService,
+          useValue: mockIpfsService,
         },
       ],
     }).compile();

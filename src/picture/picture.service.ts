@@ -97,7 +97,7 @@ export class PictureService {
       const { w, h, x, y } = imagePosition;
       context.drawImage(image, x, y, w, h);
 
-      return canvas.toDataURL();
+      return canvas.toBuffer();
     });
   }
 

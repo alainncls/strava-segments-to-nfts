@@ -25,7 +25,7 @@ describe('PictureService', () => {
     }).compile();
 
     service = module.get<PictureService>(PictureService);
-    Canvas.prototype.toDataURL = mockCanvas;
+    Canvas.prototype.toBuffer = mockCanvas;
   });
 
   afterEach(() => {});

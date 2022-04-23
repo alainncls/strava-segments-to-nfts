@@ -6,6 +6,7 @@ import { CreateActivityDto } from './dto';
 import { SegmentService } from '../segment/segment.service';
 import { PictureService } from '../picture/picture.service';
 import { StravaService } from '../strava/strava.service';
+import { IpfsService } from '../picture/ipfs.service';
 
 @Injectable()
 export class ActivityService {
@@ -14,6 +15,7 @@ export class ActivityService {
     private readonly stravaService: StravaService,
     private readonly pictureService: PictureService,
     private readonly segmentService: SegmentService,
+    private readonly ipfsService: IpfsService,
   ) {}
 
   private static buildActivityRO(activity: Activity) {
@@ -59,7 +61,11 @@ export class ActivityService {
     });
 
     activityToSave.matchingSegmentsIds = matchingSegmentsIds;
-    activityToSave.segmentsPictures = await Promise.all(generatedPictures);
+    const segmentsPictures = await Promise.all(generatedPictures);
+
+    for (const img of segmentsPictures) {
+      activityToSave.segmentsPictures.push(await this.ipfsService.uploadToIpfs(img));
+    }
 
     const activitySaved = await this.repository.createOrUpdate(activityToSave);
     return ActivityService.buildActivityRO(activitySaved);

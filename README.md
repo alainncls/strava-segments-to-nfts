@@ -60,7 +60,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ### Frontend
 
-* Framework: React
+* Framework: [React](https://reactjs.org/)
 
 ### Blockchain
 
@@ -80,7 +80,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 ### Blockchain stuff
 
 * ❌ Make an NFT from this PNG
-* ❌ Upload image to IPFS
+* ✔️ Upload image to IPFS
 
 ### Advanced stuff
 

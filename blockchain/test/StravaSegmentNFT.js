@@ -13,8 +13,11 @@ contract('StravaSegmentNFT', (accounts) => {
   });
 
   it('should mint a token', async () => {
-    await stravaSegmentNFTContract.mintToken(secondAccount, 'URL');
-    assert.equal(await stravaSegmentNFTContract.ownershipRecord(secondAccount, 0), 1);
+    const tokenUrl = 'URL';
+    await stravaSegmentNFTContract.mintToken(secondAccount, tokenUrl);
+    const result = await stravaSegmentNFTContract.ownershipRecord(secondAccount, 0);
+    assert.equal(result.tokenId, 0);
+    assert.equal(result.tokenURI, tokenUrl);
   });
 
   it("shouldn't be able to mint a token if recipient is the owner", async () => {

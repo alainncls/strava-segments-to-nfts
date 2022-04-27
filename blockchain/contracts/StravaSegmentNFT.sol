@@ -13,12 +13,13 @@ contract StravaSegmentNFT is Ownable, ERC721("StravaSegmentNFT", "STRNFT") {
         uint tokenId;
         uint timestamp;
         string tokenURI;
+        string segmentId;
     }
 
-    function mintToken(address _recipient, string memory _pictureUrl) onlyOwner public {
+    function mintToken(address _recipient, string memory _pictureUrl, string memory _segmentId) onlyOwner public {
         require(owner() != _recipient, "Recipient cannot be the owner of the contract");
         _safeMint(msg.sender, tokenId);
-        ownershipRecord[_recipient].push(tokenMetaData(tokenId, block.timestamp, _pictureUrl));
+        ownershipRecord[_recipient].push(tokenMetaData(tokenId, block.timestamp, _pictureUrl, _segmentId));
         tokenId += tokenId;
     }
 }

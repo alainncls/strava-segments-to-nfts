@@ -8,21 +8,24 @@ contract('StravaSegmentNFT', (accounts) => {
 
   let stravaSegmentNFTContract;
 
+  const tokenUrl = 'URL';
+  const segmentId = 'segmentId';
+
   beforeEach('should setup a new contract instance', async () => {
     stravaSegmentNFTContract = await StravaSegmentNFT.new();
   });
 
   it('should mint a token', async () => {
-    const tokenUrl = 'URL';
-    await stravaSegmentNFTContract.mintToken(secondAccount, tokenUrl);
+    await stravaSegmentNFTContract.mintToken(secondAccount, tokenUrl, segmentId);
     const result = await stravaSegmentNFTContract.ownershipRecord(secondAccount, 0);
     assert.equal(result.tokenId, 0);
     assert.equal(result.tokenURI, tokenUrl);
+    assert.equal(result.segmentId, segmentId);
   });
 
   it("shouldn't be able to mint a token if recipient is the owner", async () => {
     await truffleAssert.reverts(
-      stravaSegmentNFTContract.mintToken(firstAccount, 'URL'),
+      stravaSegmentNFTContract.mintToken(firstAccount, tokenUrl, segmentId),
       'Recipient cannot be the owner of the contract',
     );
   });

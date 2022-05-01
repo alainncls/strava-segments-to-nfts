@@ -12,11 +12,15 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
     docker-compose up -d
 
-### 2. Start the service
+### 2. Generate the TypeScript interface for the contract
+
+    npm run types
+
+### 3. Start the service
 
     npm run start
 
-### 2.bis Start the service in development mode (watch)
+### 3.bis Start the service in development mode (watch)
 
     npm run start:dev
 
@@ -79,7 +83,7 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 
 ### Blockchain stuff
 
-* ❌ Make an NFT from this PNG
+* 🚧 Make an NFT from this PNG
 * ✔️ Upload image to IPFS
 
 ### Advanced stuff

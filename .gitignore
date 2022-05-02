@@ -4,3 +4,4 @@ node_modules
 coverage-unit
 coverage-e2e
 build
+*coverage*

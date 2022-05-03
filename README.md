@@ -1,56 +1,51 @@
 # Strava Segments to NFTs
 
-[![Build](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/tests.yml/badge.svg)](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/tests.yml)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
-
-Contract: [![Coverage Status](https://coveralls.io/repos/github/alainncls/strava-segments-to-nfts/badge.svg?branch=main)](https://coveralls.io/github/alainncls/strava-segments-to-nfts?branch=main)
+[![Build](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/pipeline.yml/badge.svg)](https://github.com/alainncls/strava-segments-to-nfts/actions/workflows/pipeline.yml)
 
 This project aims to generate an NFT for each new unique and eligible segment a Strava user runs through.
 
+The corresponding web application is in
+a [dedicated repository](https://github.com/alainncls/strava-segments-to-nfts-webapp).
+
+## Blockchain part
+
+[![Coverage Status](https://coveralls.io/repos/github/alainncls/strava-segments-to-nfts/badge.svg?branch=main)](https://coveralls.io/github/alainncls/strava-segments-to-nfts?branch=main)
+
+## Web server part
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=coverage)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=alainncls_strava-segments-to-nfts&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=alainncls_strava-segments-to-nfts)
+
 ## How to launch
 
-### 1. Start MongoDB
+### Blockchain part
 
-    docker-compose up -d
+1. Go to the `blockchain` folder and run `npm install`
+2. Start Ganache
+3. Deploy the contract via `truffle migrate`
+4. Generate the TypeScript interfaces for the contracts with `npm run types`
 
-### 2. Generate the TypeScript interface for the contract
+### Web server part
 
-    npm run types
-
-### 3. Start the service
-
-    npm run start
-
-### 3.bis Start the service in development mode (watch)
-
-    npm run start:dev
+1. Stay at the root of the project and run `npm install`
+2. Launch the server with `npm run start` (`npm run start:dev` for the watch mode)
+3. The server runs on http://localhost:3001/
 
 ## How to test
 
-### Run unit tests
+### Blockchain part
 
-    npm run test
+1. Go to the `blockchain` folder and run `npm install`
+2. Start Ganache
+3. Test the contract with `truffle test`
 
-### Run unit tests with watch
+### Web server part
 
-    npm run test:watch
-
-### Run unit tests with coverage
-
-    npm run test:coverage
-
-### Run end-to-end tests
-
-    npm run test:e2e
-
-### Run end-to-end tests with watch
-
-    npm run test:e2e:watch
-
-### Run end-to-end tests with coverage
-
-    npm run test:e2e:coverage
+1. Stay at the root of the project and run `npm install`
+2. Unit test the server with `npm run test` (`npm run test:watch` for the watch mode and `npm run test:coverage` to
+   generate the coverage data)
+3. E2E test the server with `npm run test:e2e` (`npm run test:watch` for the watch mode and `npm run e2e:coverage` to
+   generate the coverage data)
 
 ## Technical notes/ideas
 
@@ -94,3 +89,5 @@ This project aims to generate an NFT for each new unique and eligible segment a 
 * ❌ When a collection is completed, generate a "GOLD" NFT
 
 ## To Do
+
+_Nothing at the moment_

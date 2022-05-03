@@ -18,10 +18,7 @@
     "test:e2e": "jest --config=jest-e2e.json",
     "test:e2e:coverage": "jest --config=jest-e2e.json --coverage",
     "test:e2e:watch": "jest --config=jest-e2e.json --watch",
-    "test:watch": "jest --config=jest.json --watch",
-    "types": "npm run types:build && npm run types:move",
-    "types:build": "npx typechain --target ethers-v5 blockchain/build/contracts/*",
-    "types:move": "rm -rf src/config/types && mv types src/config"
+    "test:watch": "jest --config=jest.json --watch"
   },
   "dependencies": {
     "@nestjs/common": "^8.4.3",
@@ -40,24 +37,17 @@
   "devDependencies": {
     "@nestjs/cli": "^8.2.4",
     "@nestjs/testing": "^8.4.3",
-    "@openzeppelin/contracts": "^4.5.0",
-    "@typechain/ethers-v5": "^10.0.0",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "chai": "^4.3.6",
-    "coveralls": "^3.1.1",
     "eslint": "^8.12.0",
     "jest": "^27.5.1",
     "prettier": "^2.6.1",
-    "solidity-coverage": "0.7.19",
     "supertest": "^6.2.2",
-    "truffle": "^5.5.11",
-    "truffle-assertions": "^0.9.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
-    "typechain": "^8.0.0",
     "typescript": "^4.6.3"
   }
 }

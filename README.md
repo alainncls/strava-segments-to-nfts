@@ -23,13 +23,17 @@ a [dedicated repository](https://github.com/alainncls/strava-segments-to-nfts-we
 1. Go to the `blockchain` folder and run `npm install`
 2. Start Ganache
 3. Deploy the contract via `truffle migrate`
-4. Generate the TypeScript interfaces for the contracts with `npm run types`
+4. Generate the TypeScript interfaces for the contract with `npm run types`
 
 ### Web server part
 
 1. Stay at the root of the project and run `npm install`
 2. Launch the server with `npm run start` (`npm run start:dev` for the watch mode)
 3. The server runs on http://localhost:3001/
+
+### Web application part
+
+It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 ## How to test
 

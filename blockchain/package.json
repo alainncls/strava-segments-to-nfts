@@ -16,8 +16,8 @@
     "postmigrate": "npm run types",
     "test": "truffle test",
     "types": "npm run types:build && npm run types:move",
-    "types:build": "npx typechain --target ethers-v5 blockchain/build/contracts/*",
-    "types:move": "rm -rf ../src/config/types && mv types ../src/config"
+    "types:build": "npx typechain --target ethers-v5 build/contracts/*",
+    "types:move": "rm -rf ../server/src/config/types && mv types ../server/src/config"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",

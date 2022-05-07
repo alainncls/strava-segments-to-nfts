@@ -27,7 +27,7 @@ a [dedicated repository](https://github.com/alainncls/strava-segments-to-nfts-we
 
 ### Web server part
 
-1. Stay at the root of the project and run `npm install`
+1. Go to the `server` folder and run `npm install`
 2. Launch the server with `npm run start` (`npm run start:dev` for the watch mode)
 3. The server runs on http://localhost:3001/
 
@@ -45,7 +45,7 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 ### Web server part
 
-1. Stay at the root of the project and run `npm install`
+1. Go to the `server` folder and run `npm install`
 2. Unit test the server with `npm run test` (`npm run test:watch` for the watch mode and `npm run test:coverage` to
    generate the coverage data)
 3. E2E test the server with `npm run test:e2e` (`npm run test:watch` for the watch mode and `npm run e2e:coverage` to

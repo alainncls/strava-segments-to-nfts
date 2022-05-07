@@ -5,3 +5,4 @@ coverage-unit
 coverage-e2e
 build
 *coverage*
+server/src/config/types

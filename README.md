@@ -85,6 +85,7 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 ### Blockchain stuff
 
 * 🚧 Make an NFT from this PNG
+* ❌ MetaMask connect from the frontend
 * ✔️ Upload image to IPFS
 
 ### Advanced stuff

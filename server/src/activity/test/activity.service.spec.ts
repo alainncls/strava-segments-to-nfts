@@ -6,10 +6,12 @@ import { SegmentService } from '../../segment/segment.service';
 import { PictureService } from '../../picture/picture.service';
 import { StravaService } from '../../strava/strava.service';
 import { IpfsService } from '../../picture/ipfs.service';
+import { NftService } from '../nft.service';
 
 describe('ActivityService', () => {
   let service: ActivityService;
   const cid = 'ipfs cid';
+  const txHash = '0x3a2446616cb63174ea0efe2f0fd59e12831ef58af7f2d56cbda63ed5981bc898';
 
   const repoActivity = {
     _id: 'ID',
@@ -18,6 +20,7 @@ describe('ActivityService', () => {
     segmentsIds: [123456, 654321],
     matchingSegmentsIds: [654321],
     segmentsPictures: [cid],
+    transactionsHashes: [txHash],
   };
 
   const stravaActivity = {
@@ -46,6 +49,7 @@ describe('ActivityService', () => {
       segmentsIds: [123456, 654321],
       matchingSegmentsIds: [654321],
       segmentsPictures: [cid],
+      transactionsHashes: [txHash],
     },
   };
 
@@ -83,6 +87,10 @@ describe('ActivityService', () => {
     uploadToIpfs: jest.fn(() => cid),
   };
 
+  const mockNftService = {
+    mintNft: jest.fn(() => [txHash]),
+  };
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -106,6 +114,10 @@ describe('ActivityService', () => {
         {
           provide: IpfsService,
           useValue: mockIpfsService,
+        },
+        {
+          provide: NftService,
+          useValue: mockNftService,
         },
       ],
     }).compile();

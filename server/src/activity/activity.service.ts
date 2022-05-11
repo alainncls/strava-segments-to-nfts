@@ -7,6 +7,7 @@ import { SegmentService } from '../segment/segment.service';
 import { PictureService } from '../picture/picture.service';
 import { StravaService } from '../strava/strava.service';
 import { IpfsService } from '../picture/ipfs.service';
+import { NftService } from './nft.service';
 
 @Injectable()
 export class ActivityService {
@@ -16,6 +17,7 @@ export class ActivityService {
     private readonly pictureService: PictureService,
     private readonly segmentService: SegmentService,
     private readonly ipfsService: IpfsService,
+    private readonly nftService: NftService,
   ) {}
 
   private static buildActivityRO(activity: Activity) {
@@ -26,6 +28,7 @@ export class ActivityService {
       segmentsIds: activity.segmentsIds,
       matchingSegmentsIds: activity.matchingSegmentsIds,
       segmentsPictures: activity.segmentsPictures,
+      transactionsHashes: activity.transactionsHashes,
     };
 
     return { activity: activityRO };
@@ -39,6 +42,7 @@ export class ActivityService {
       segmentsIds: [...new Set(activityDto.segment_efforts.map((segmentEffort) => segmentEffort.segment.id))],
       matchingSegmentsIds: [],
       segmentsPictures: [],
+      transactionsHashes: [],
     };
   }
 
@@ -66,6 +70,8 @@ export class ActivityService {
     for (const img of segmentsPictures) {
       activityToSave.segmentsPictures.push(await this.ipfsService.uploadToIpfs(img));
     }
+
+    activityToSave.transactionsHashes = await this.nftService.mintNft(activityToSave);
 
     const activitySaved = await this.repository.createOrUpdate(activityToSave);
     return ActivityService.buildActivityRO(activitySaved);

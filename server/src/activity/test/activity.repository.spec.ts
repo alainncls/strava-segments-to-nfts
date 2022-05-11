@@ -41,6 +41,7 @@ describe('ActivityRepository', () => {
       segmentsIds: [123, 456],
       matchingSegmentsIds: [456],
       segmentsPictures: [],
+      transactionsHashes: ['0x3a2446616cb63174ea0efe2f0fd59e12831ef58af7f2d56cbda63ed5981bc898'],
     };
     const spyExists = jest.spyOn(mockActivityModel, 'exists').mockResolvedValue(activity as ActivityDocument);
     const spy = jest.spyOn(mockActivityModel, 'findOneAndUpdate').mockResolvedValue(activity as ActivityDocument);

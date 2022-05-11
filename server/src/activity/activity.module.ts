@@ -7,6 +7,7 @@ import { ActivityRepository } from './activity.repository';
 import { SegmentModule } from '../segment/segment.module';
 import { PictureModule } from '../picture/picture.module';
 import { StravaModule } from '../strava/strava.module';
+import { NftService } from './nft.service';
 
 @Module({
   controllers: [ActivityController],
@@ -16,6 +17,6 @@ import { StravaModule } from '../strava/strava.module';
     PictureModule,
     StravaModule,
   ],
-  providers: [ActivityService, ActivityRepository],
+  providers: [ActivityService, ActivityRepository, NftService],
 })
 export class ActivityModule {}

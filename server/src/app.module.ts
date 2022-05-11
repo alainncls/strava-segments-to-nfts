@@ -6,7 +6,9 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      envFilePath: ['.env.local', '.env'],
+    }),
     MongooseModule.forRoot('mongodb://localhost:27017/test'),
     SegmentModule,
     ActivityModule,

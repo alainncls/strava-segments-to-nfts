@@ -5,6 +5,7 @@ export interface IActivityData {
   segmentsIds: number[];
   matchingSegmentsIds: number[];
   segmentsPictures: string[];
+  transactionsHashes: string[];
 }
 
 export interface IActivityRO {

@@ -6,3 +6,4 @@ coverage-e2e
 build
 *coverage*
 server/src/config/types
+.env.local

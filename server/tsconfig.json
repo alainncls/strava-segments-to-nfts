@@ -14,14 +14,14 @@
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
-    "outDir": "../dist",
+    "outDir": "./dist",
     "skipLibCheck": true
   },
   "include": [
-    "server/src/**/*"
+    "src/**/*"
   ],
   "exclude": [
-    "../node_modules",
+    "node_modules",
     "**/*.spec.ts"
   ]
 }

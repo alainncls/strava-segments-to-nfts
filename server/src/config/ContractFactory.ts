@@ -12,7 +12,7 @@ class ContractFactory {
         : `https://${process.env.CHAIN_NAME}.infura.io/v3/${process.env.INFURA_PROJECT_ID}`;
     const provider = new ethers.providers.JsonRpcProvider(nodeUrl);
     this.etherSigner = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-    this.stravaSegmentNft = new StravaSegmentNftContract(this.etherSigner);
+    this.stravaSegmentNft = new StravaSegmentNftContract(process.env.NETWORK_ID, this.etherSigner);
   }
 
   getStravaSegmentNftContract(): StravaSegmentNftContract {

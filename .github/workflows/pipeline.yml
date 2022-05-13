@@ -75,12 +75,7 @@ jobs:
         run: cd blockchain && truffle compile && npm run types
 
       - name: Run unit tests and generate coverage report
-        uses: mattallty/jest-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          working-directory: "server"
-          test-command: "yarn run test:coverage"
+        run: cd server && npm run test:coverage
 
       - name: Run e2e tests and generate coverage report
         run: cd server && npm run test:e2e:coverage

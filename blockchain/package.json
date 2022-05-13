@@ -15,9 +15,10 @@
     "migrate": "truffle migrate --reset",
     "postmigrate": "npm run types",
     "test": "truffle test",
-    "types": "npm run types:build && npm run types:move",
+    "types": "npm run types:build && npm run types:move && npm run types:address",
     "types:build": "npx typechain --target ethers-v5 build/contracts/*",
-    "types:move": "rm -rf ../server/src/config/types && mv types ../server/src/config"
+    "types:move": "rm -rf ../server/src/config/types && mv types ../server/src/config",
+    "types:address": "node utils.js && mv stravaSegmentNftNetworks.json ../server/src/config/types"
   },
   "devDependencies": {
     "@openzeppelin/contracts": "^4.5.0",

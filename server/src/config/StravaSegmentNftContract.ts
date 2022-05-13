@@ -2,15 +2,13 @@ import { ContractTransaction, Signer } from 'ethers';
 import { StravaSegmentNFT as StravaSegmentNftContractType } from './types/ethers-contracts/StravaSegmentNFT';
 import { StravaSegmentNFT__factory } from './types/ethers-contracts';
 import OwnershipRecord from '../model/OwnershipRecord';
-
-const stravaSegmentNftJson = require('../../../blockchain/build/contracts/StravaSegmentNft.json');
-const stravaSegmentNftAddress = stravaSegmentNftJson.networks['5777'].address;
+import { default as networks } from './types/stravaSegmentNftNetworks.json';
 
 class StravaSegmentNftContract {
   private contract: StravaSegmentNftContractType;
 
-  constructor(etherSigner: Signer) {
-    this.contract = StravaSegmentNFT__factory.connect(stravaSegmentNftAddress, etherSigner);
+  constructor(networkId, etherSigner: Signer) {
+    this.contract = StravaSegmentNFT__factory.connect(networks[networkId].address, etherSigner);
   }
 
   async mintToken(recipient: string, pictureUrl: string, segmentId: string): Promise<ContractTransaction> {

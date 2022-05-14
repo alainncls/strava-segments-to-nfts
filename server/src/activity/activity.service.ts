@@ -68,7 +68,7 @@ export class ActivityService {
     const segmentsPictures = await Promise.all(generatedPictures);
 
     for (const img of segmentsPictures) {
-      activityToSave.segmentsPictures.push(await this.ipfsService.uploadToIpfs(img));
+      activityToSave.segmentsPictures.push(`ipfs://${await this.ipfsService.uploadToIpfs(img)}`);
     }
 
     activityToSave.transactionsHashes = await this.nftService.mintNft(activityToSave);

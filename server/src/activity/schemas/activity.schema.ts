@@ -21,6 +21,9 @@ export class Activity {
 
   @Prop()
   segmentsPictures: any[];
+
+  @Prop()
+  transactionsHashes: string[];
 }
 
 export const ActivitySchema = SchemaFactory.createForClass(Activity);

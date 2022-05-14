@@ -1,23 +1,18 @@
-import { ContractReceipt, ContractTransaction, Event, Signer } from "ethers";
-import { StravaSegmentNFT as StravaSegmentNftContractType } from "./types/ethers-contracts/StravaSegmentNFT";
-import { StravaSegmentNFT__factory } from "./types/ethers-contracts";
-import OwnershipRecord from "../model/OwnershipRecord";
-
-const stravaSegmentNftJson = require("../../../blockchain/build/contracts/StravaSegmentNft.json");
-const stravaSegmentNftAddress = stravaSegmentNftJson.networks["5777"].address;
+import { ContractTransaction, Signer } from 'ethers';
+import { StravaSegmentNFT as StravaSegmentNftContractType } from './types/ethers-contracts/StravaSegmentNFT';
+import { StravaSegmentNFT__factory } from './types/ethers-contracts';
+import OwnershipRecord from '../model/OwnershipRecord';
+import { default as networks } from './types/stravaSegmentNftNetworks.json';
 
 class StravaSegmentNftContract {
   private contract: StravaSegmentNftContractType;
 
-  constructor(etherSigner: Signer) {
-    this.contract = StravaSegmentNFT__factory.connect(stravaSegmentNftAddress, etherSigner);
+  constructor(networkId, etherSigner: Signer) {
+    this.contract = StravaSegmentNFT__factory.connect(networks[networkId].address, etherSigner);
   }
 
-  async mintToken(recipient: string, pictureUrl: string, segmentId: string): Promise<boolean> {
-    const transaction: ContractTransaction = await this.contract.mintToken(recipient, pictureUrl, segmentId);
-    const receipt: ContractReceipt = await transaction.wait(1);
-    const event: Event = receipt.events.pop();
-    return !!event;
+  async mintToken(recipient: string, pictureUrl: string, segmentId: string): Promise<ContractTransaction> {
+    return this.contract.mintToken(recipient, pictureUrl, segmentId);
   }
 
   async getOwnershipRecord(recipient, id): Promise<OwnershipRecord> {

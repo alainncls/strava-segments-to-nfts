@@ -22,10 +22,18 @@ a [dedicated repository](https://github.com/alainncls/strava-segments-to-nfts-we
 
 1. Go to the `blockchain` folder and run `npm install`
 2. Start Ganache
-3. Deploy the contract via `truffle migrate`
+3. Deploy the contract with `truffle migrate --reset` (`--reset` to force re-deployment everytime)
 4. Generate the TypeScript interfaces for the contract with `npm run types`
 
 ### Web server part
+
+First, you need to copy the `server/.env` file to a `server/.env.local` file. Do not push this file (it's ignored) and
+add your own values, at least for:
+
+* `PRIVATE_KEY` = The wallet which mints the NFT - _This is a PoC, do not do anything stupid with your private keys,
+  please..._
+* `RECIPIENT` = The public address that will receive the NFT minted - _This is temporary of course, pending the MetaMask
+  integration_
 
 1. Go to the `server` folder and run `npm install`
 2. Launch the server with `npm run start` (`npm run start:dev` for the watch mode)

@@ -6,9 +6,12 @@ import { ContractTransaction } from 'ethers';
 @Injectable()
 export class NftService {
   async mintNft(activityToSave: IActivityData): Promise<string[]> {
+    // TODO: Ether signer should be the user (not the platform)
     const contractFactory = new ContractFactory();
     const contract = contractFactory.getStravaSegmentNftContract();
     const txHashes: string[] = [];
+
+    // TODO: get NFT recipient public address from a MetaMask login
 
     for (let i = 0; i < activityToSave.segmentsPictures.length; i++) {
       const contractTransaction: ContractTransaction = await contract.mintToken(

@@ -74,6 +74,7 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 ### Frontend
 
 * Framework: [React](https://reactjs.org/)
+* UI library: [Bootstrap](https://getbootstrap.com/)
 
 ### Blockchain
 
@@ -87,14 +88,15 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 * ✔️ CRUD for these eligible segments
 * ✔️ Get a Strava activity via its ID
 * ✔️ Extract new segments IDs from this activity
-* ✔️ For matching segments, generate a PNG (name, length)
+* ✔️ For matching segments, generate a PNG image
+* ✔️ This image should display the segment's name, distance and GPS path
 * ✔️ Strava connect from the webapp
 
 ### Blockchain stuff
 
-* 🚧 Make an NFT from this PNG
-* ❌ MetaMask connect from the frontend
 * ✔️ Upload image to IPFS
+* ✔️ Make an NFT from this image
+* ❌ MetaMask connect from the frontend
 
 ### Advanced stuff
 
@@ -103,4 +105,6 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 ## To Do
 
-_Nothing at the moment_
+* Ether signer should be the end-user (not the platform)
+* Get NFT recipient public address from a MetaMask login
+* Improve the webapp's UI

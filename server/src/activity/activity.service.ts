@@ -65,13 +65,16 @@ export class ActivityService {
     });
 
     activityToSave.matchingSegmentsIds = matchingSegmentsIds;
-    const segmentsPictures = await Promise.all(generatedPictures);
 
-    for (const img of segmentsPictures) {
-      activityToSave.segmentsPictures.push(`ipfs://${await this.ipfsService.uploadToIpfs(img)}`);
+    if (matchingSegmentsIds.length) {
+      const segmentsPictures = await Promise.all(generatedPictures);
+
+      for (const img of segmentsPictures) {
+        activityToSave.segmentsPictures.push(`ipfs://${await this.ipfsService.uploadToIpfs(img)}`);
+      }
+
+      activityToSave.transactionsHashes = await this.nftService.mintNft(activityToSave);
     }
-
-    activityToSave.transactionsHashes = await this.nftService.mintNft(activityToSave);
 
     const activitySaved = await this.repository.createOrUpdate(activityToSave);
     return ActivityService.buildActivityRO(activitySaved);

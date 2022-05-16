@@ -7,16 +7,16 @@ import { ActivityRepository } from './activity.repository';
 import { SegmentModule } from '../segment/segment.module';
 import { PictureModule } from '../picture/picture.module';
 import { StravaModule } from '../strava/strava.module';
-import { NftService } from './nft.service';
+import { NftController } from './nft.controller';
 
 @Module({
-  controllers: [ActivityController],
+  controllers: [ActivityController, NftController],
   imports: [
     MongooseModule.forFeature([{ name: 'Activity', schema: ActivitySchema }]),
     SegmentModule,
     PictureModule,
     StravaModule,
   ],
-  providers: [ActivityService, ActivityRepository, NftService],
+  providers: [ActivityService, ActivityRepository],
 })
 export class ActivityModule {}

@@ -7,7 +7,6 @@ import { SegmentService } from '../segment/segment.service';
 import { PictureService } from '../picture/picture.service';
 import { StravaService } from '../strava/strava.service';
 import { IpfsService } from '../picture/ipfs.service';
-import { NftService } from './nft.service';
 
 @Injectable()
 export class ActivityService {
@@ -17,7 +16,6 @@ export class ActivityService {
     private readonly pictureService: PictureService,
     private readonly segmentService: SegmentService,
     private readonly ipfsService: IpfsService,
-    private readonly nftService: NftService,
   ) {}
 
   private static buildActivityRO(activity: Activity) {
@@ -72,8 +70,6 @@ export class ActivityService {
       for (const img of segmentsPictures) {
         activityToSave.segmentsPictures.push(`ipfs://${await this.ipfsService.uploadToIpfs(img)}`);
       }
-
-      activityToSave.transactionsHashes = await this.nftService.mintNft(activityToSave);
     }
 
     const activitySaved = await this.repository.createOrUpdate(activityToSave);
@@ -93,5 +89,16 @@ export class ActivityService {
     }
 
     return ActivityService.buildActivityRO(activity);
+  }
+
+  async findByStravaId(stravaId: number): Promise<IActivityRO> {
+    const activity = await this.repository.findByStravaId(stravaId);
+
+    if (!activity) {
+      const errors = { Activity: ' not found' };
+      throw new HttpException({ errors }, 401);
+    }
+
+    return activity;
   }
 }

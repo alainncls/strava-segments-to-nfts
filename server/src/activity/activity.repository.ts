@@ -28,7 +28,7 @@ export class ActivityRepository {
     return this.activityModel.findById(id);
   }
 
-  async findByStravaId(stravaId: number): Promise<any> {
+  async findByStravaId(stravaId: number): Promise<Activity[]> {
     return this.activityModel.find({ stravaId });
   }
 

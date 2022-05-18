@@ -8,7 +8,7 @@ export class NftService {
   constructor(private readonly activityService: ActivityService) {}
 
   async mintNft(activityId: number): Promise<string[]> {
-    const { activity } = await this.activityService.findByStravaId(activityId);
+    const activity = await this.activityService.findUniqueByStravaId(activityId);
 
     // TODO: Ether signer should be the user (not the platform)
     const contractFactory = new ContractFactory();

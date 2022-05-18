@@ -85,20 +85,25 @@ export class ActivityService {
 
     if (!activity) {
       const errors = { Activity: ' not found' };
-      throw new HttpException({ errors }, 401);
+      throw new HttpException({ errors }, 404);
     }
 
     return ActivityService.buildActivityRO(activity);
   }
 
-  async findByStravaId(stravaId: number): Promise<IActivityRO> {
-    const activity = await this.repository.findByStravaId(stravaId);
+  async findUniqueByStravaId(stravaId: number): Promise<Activity> {
+    const activities = await this.repository.findByStravaId(stravaId);
 
-    if (!activity) {
+    if (!activities.length) {
       const errors = { Activity: ' not found' };
-      throw new HttpException({ errors }, 401);
+      throw new HttpException({ errors }, 404);
     }
 
-    return activity;
+    if (activities.length > 1) {
+      const errors = { Activity: ' not unique' };
+      throw new HttpException({ errors }, 409);
+    }
+
+    return activities[0];
   }
 }

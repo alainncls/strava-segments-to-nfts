@@ -5,7 +5,7 @@ import { NftService } from './nft.service';
 export class NftController {
   constructor(private readonly nftService: NftService) {}
 
-  @Post('/:stravaId/nft')
+  @Post('/:stravaId')
   async minNft(@Param() params): Promise<string[]> {
     return this.nftService.mintNft(Number(params.stravaId));
   }

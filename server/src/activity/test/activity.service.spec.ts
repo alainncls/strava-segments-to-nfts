@@ -12,10 +12,11 @@ describe('ActivityService', () => {
   let service: ActivityService;
   const cid = 'ipfs cid';
   const txHash = '0x3a2446616cb63174ea0efe2f0fd59e12831ef58af7f2d56cbda63ed5981bc898';
+  const STRAVA_ID = 123456;
 
   const repoActivity = {
     _id: 'ID',
-    stravaId: 123456,
+    stravaId: STRAVA_ID,
     name: 'NAME',
     segmentsIds: [123456, 654321],
     matchingSegmentsIds: [654321],
@@ -41,6 +42,16 @@ describe('ActivityService', () => {
     },
   };
 
+  const activity = {
+    _id: 'ID',
+    stravaId: 123456,
+    name: 'NAME',
+    segmentsIds: [123456, 654321],
+    matchingSegmentsIds: [654321],
+    segmentsPictures: [cid],
+    transactionsHashes: [txHash],
+  };
+
   const resultActivity = {
     activity: {
       id: 'ID',
@@ -58,6 +69,7 @@ describe('ActivityService', () => {
     createOrUpdate: jest.fn().mockResolvedValue(repoActivity),
     delete: jest.fn().mockResolvedValue({ deleteCount: 1 }),
     findById: jest.fn().mockResolvedValue(repoActivity),
+    findByStravaId: jest.fn().mockResolvedValue([repoActivity]),
   };
 
   const mockStravaService = {
@@ -148,5 +160,19 @@ describe('ActivityService', () => {
   it('should return an error when it cannot find an activity by its ID', async () => {
     mockActivityRepository.findById = jest.fn().mockResolvedValue(undefined);
     await expect(service.findById('WRONG_ID')).rejects.toThrow(HttpException);
+  });
+
+  it('should find an activity by its Strava ID', async () => {
+    expect(await service.findUniqueByStravaId(STRAVA_ID)).toEqual(activity);
+  });
+
+  it('should return an error when it cannot find an activity by its Strava ID', async () => {
+    mockActivityRepository.findByStravaId = jest.fn().mockResolvedValue([]);
+    await expect(service.findUniqueByStravaId(654321)).rejects.toThrow(HttpException);
+  });
+
+  it('should return an error when it finds 2 activities with the same Strava ID', async () => {
+    mockActivityRepository.findByStravaId = jest.fn().mockResolvedValue([resultActivity, resultActivity]);
+    await expect(service.findUniqueByStravaId(654321)).rejects.toThrow(HttpException);
   });
 });

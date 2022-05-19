@@ -65,4 +65,12 @@ describe('ActivityRepository', () => {
     await mockRepository.findById(activityId);
     expect(spy).toBeCalled();
   });
+
+  it('should find an activity by its Strava ID', async () => {
+    const activity = new Activity();
+    const stravaId = 123456;
+    const spy = jest.spyOn(mockActivityModel, 'find').mockResolvedValue([activity] as ActivityDocument[]);
+    await mockRepository.findByStravaId(stravaId);
+    expect(spy).toBeCalled();
+  });
 });

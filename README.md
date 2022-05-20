@@ -107,5 +107,4 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 * Ether signer should be the end-user (not the platform)
 * Get NFT recipient public address from a MetaMask login
-* Test `NftService` and `NftController`
-* Mint NFTs from the webapp
+* Test `NftService`

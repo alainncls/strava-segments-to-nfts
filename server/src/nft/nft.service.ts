@@ -1,15 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import ContractFactory from '../config/ContractFactory';
 import { ContractTransaction } from 'ethers';
-import { ActivityService } from './activity.service';
+import { MintNftDto } from './dto/mint-nft.dto';
 
 @Injectable()
 export class NftService {
-  constructor(private readonly activityService: ActivityService) {}
-
-  async mintNft(activityId: number): Promise<string[]> {
-    const activity = await this.activityService.findUniqueByStravaId(activityId);
-
+  async mintNft(mintNftDto: MintNftDto): Promise<string[]> {
     // TODO: Ether signer should be the user (not the platform)
     const contractFactory = new ContractFactory();
     const contract = contractFactory.getStravaSegmentNftContract();
@@ -17,11 +13,11 @@ export class NftService {
 
     // TODO: get NFT recipient public address from a MetaMask login
 
-    for (let i = 0; i < activity.segmentsPictures.length; i++) {
+    for (let i = 0; i < mintNftDto.segmentsPictures.length; i++) {
       const contractTransaction: ContractTransaction = await contract.mintToken(
         process.env.RECIPIENT,
-        activity.segmentsPictures[i],
-        activity.matchingSegmentsIds[i].toString(),
+        mintNftDto.segmentsPictures[i],
+        mintNftDto.matchingSegmentsIds[i].toString(),
       );
       txHashes.push(contractTransaction.hash);
     }

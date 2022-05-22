@@ -29,6 +29,8 @@ describe('NftController', () => {
   });
 
   it('should mint NFTs and return the tx hashes', async () => {
-    expect(await controller.minNft({ id: 'STRAVA_ID' })).toEqual(txHashes);
+    expect(await controller.minNft({ segmentsPictures: ['ipfs://cid'], matchingSegmentsIds: [123456] })).toEqual(
+      txHashes,
+    );
   });
 });

@@ -2,11 +2,11 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { IActivityData, IActivityRO } from './activity.interface';
 import { Activity } from './schemas/activity.schema';
 import { ActivityRepository } from './activity.repository';
-import { CreateActivityDto } from './dto';
 import { SegmentService } from '../segment/segment.service';
 import { PictureService } from '../picture/picture.service';
 import { StravaService } from '../strava/strava.service';
 import { IpfsService } from '../picture/ipfs.service';
+import { CreateActivityDto } from './dto/create-activity.dto';
 
 @Injectable()
 export class ActivityService {

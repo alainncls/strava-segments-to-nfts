@@ -6,7 +6,6 @@ import { SegmentService } from '../../segment/segment.service';
 import { PictureService } from '../../picture/picture.service';
 import { StravaService } from '../../strava/strava.service';
 import { IpfsService } from '../../picture/ipfs.service';
-import { NftService } from '../nft.service';
 
 describe('ActivityService', () => {
   let service: ActivityService;
@@ -99,10 +98,6 @@ describe('ActivityService', () => {
     uploadToIpfs: jest.fn(() => cid),
   };
 
-  const mockNftService = {
-    mintNft: jest.fn(() => [txHash]),
-  };
-
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -126,10 +121,6 @@ describe('ActivityService', () => {
         {
           provide: IpfsService,
           useValue: mockIpfsService,
-        },
-        {
-          provide: NftService,
-          useValue: mockNftService,
         },
       ],
     }).compile();

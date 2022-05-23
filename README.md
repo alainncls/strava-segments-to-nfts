@@ -96,7 +96,8 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 * ✔️ Upload image to IPFS
 * ✔️ Make an NFT from this image
-* ❌ MetaMask connect from the frontend
+* ❌ Frontend connection with MetaMask
+* ❌ Mint NFTs from the frontend with MetaMask
 
 ### Advanced stuff
 
@@ -105,5 +106,10 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 ## To Do
 
-* Ether signer should be the end-user (not the platform)
-* Get NFT recipient public address from a MetaMask login
+* Remove backend NFT minting (to be done by the end-user)
+* Add a new endpoint to display a specific NFT information
+* Add an endpoint to provide ERC721 contract address to the frontend
+* Stop using end-user's Strava token in backend, get everything needed in frontend and send it to the backend
+* Refactor webapp in TypeScript
+* Split webapp's `App` file into components
+* In webapp, use an environment variable to target the backend URL

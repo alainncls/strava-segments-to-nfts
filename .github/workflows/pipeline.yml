@@ -1,46 +1,10 @@
 name: Build
 
-on: [push]
+on: [ push ]
 
 jobs:
-  build-contract:
-
-    name: Build smart contract
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Setup NodeJS 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - name: Show NodeJS version
-        run: npm --version
-
-      - name: Install Truffle
-        run: npm install truffle -g
-
-      - name: Install Dependencies
-        run: cd blockchain && npm ci
-
-      - name: Run tests & Generate coverage
-        run: cd blockchain && truffle run coverage
-
-      - name: Send coverage to Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./blockchain/coverage/lcov.info
-
   build-server:
-
-    name: Build server
+    name: Build smart contract & server
     runs-on: ubuntu-latest
 
     steps:
@@ -71,13 +35,22 @@ jobs:
       - name: Install Blockchain Dependencies
         run: cd blockchain && npm ci
 
+      - name: Run Blockchain tests & Generate coverage
+        run: cd blockchain && truffle run coverage
+
+      - name: Send Blockchain coverage to Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./blockchain/coverage/lcov.info
+
       - name: Generate contract types
         run: cd blockchain && truffle compile && npm run types
 
-      - name: Run unit tests and generate coverage report
+      - name: Run Server unit tests and generate coverage report
         run: cd server && npm run test:coverage
 
-      - name: Run e2e tests and generate coverage report
+      - name: Run Server e2e tests and generate coverage report
         run: cd server && npm run test:e2e:coverage
 
       - name: SonarCloud Scan

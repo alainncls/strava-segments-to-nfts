@@ -110,6 +110,6 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 * Add a new endpoint to display a specific NFT information
 * Add an endpoint to provide ERC721 contract address to the frontend
 * Stop using end-user's Strava token in backend, get everything needed in frontend and send it to the backend
+* Store refresh token in local storage?
 * Refactor webapp in TypeScript
 * Split webapp's `App` file into components
-* In webapp, use an environment variable to target the backend URL

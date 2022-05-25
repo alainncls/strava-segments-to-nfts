@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSegmentDto } from './dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Segment, SegmentDocument } from './schemas/segment.schema';
 import { Model } from 'mongoose';
+import { CreateSegmentDto } from './dto/create-segment.dto';
 
 @Injectable()
 export class SegmentRepository {

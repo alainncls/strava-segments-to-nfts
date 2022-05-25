@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { CreateSegmentDto } from './dto';
 import { SegmentService } from './segment.service';
 import { ISegmentRO } from './segment.interface';
+import { CreateSegmentDto } from './dto/create-segment.dto';
 
 @Controller('segments')
 export class SegmentController {

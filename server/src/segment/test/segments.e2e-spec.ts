@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SegmentService } from '../segment.service';
 import { INestApplication } from '@nestjs/common';
 import { SegmentController } from '../segment.controller';
-import { CreateSegmentDto } from '../dto';
+import { CreateSegmentDto } from '../dto/create-segment.dto';
 
 describe('Segments', () => {
   let app: INestApplication;

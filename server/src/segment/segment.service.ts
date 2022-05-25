@@ -1,8 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { CreateSegmentDto } from './dto';
 import { ISegmentRO } from './segment.interface';
 import { Segment } from './schemas/segment.schema';
 import { SegmentRepository } from './segment.repository';
+import { CreateSegmentDto } from './dto/create-segment.dto';
 
 @Injectable()
 export class SegmentService {

@@ -28,8 +28,6 @@ describe('PictureService', () => {
     Canvas.prototype.toBuffer = mockCanvas;
   });
 
-  afterEach(() => {});
-
   it('should be defined', () => {
     expect(service).toBeDefined();
   });

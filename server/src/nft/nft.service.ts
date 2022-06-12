@@ -24,4 +24,10 @@ export class NftService {
 
     return txHashes;
   }
+
+  getContractAddress(): string {
+    const contractFactory = new ContractFactory();
+    const contract = contractFactory.getStravaSegmentNftContract();
+    return contract.getContractAddress();
+  }
 }

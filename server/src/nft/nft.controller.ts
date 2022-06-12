@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { NftService } from './nft.service';
 import { MintNftDto } from './dto/mint-nft.dto';
 
@@ -9,5 +9,10 @@ export class NftController {
   @Post()
   async minNft(@Body() mintNftDto: MintNftDto): Promise<string[]> {
     return this.nftService.mintNft(mintNftDto);
+  }
+
+  @Get()
+  async getContractAddress(): Promise<string> {
+    return this.nftService.getContractAddress();
   }
 }

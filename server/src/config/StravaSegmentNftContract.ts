@@ -11,6 +11,10 @@ class StravaSegmentNftContract {
     this.contract = StravaSegmentNFT__factory.connect(networks[networkId].address, etherSigner);
   }
 
+  getContractAddress(): string {
+    return this.contract.address;
+  }
+
   async mintToken(recipient: string, pictureUrl: string, segmentId: string): Promise<ContractTransaction> {
     return this.contract.mintToken(recipient, pictureUrl, segmentId);
   }

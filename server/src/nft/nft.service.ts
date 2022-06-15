@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import ContractFactory from '../config/ContractFactory';
 import { ContractTransaction } from 'ethers';
 import { MintNftDto } from './dto/mint-nft.dto';
+import OwnershipRecord from '../model/OwnershipRecord';
 
 @Injectable()
 export class NftService {
@@ -29,5 +30,11 @@ export class NftService {
     const contractFactory = new ContractFactory();
     const contract = contractFactory.getStravaSegmentNftContract();
     return contract.getContractAddress();
+  }
+
+  async getOwnershipRecord(recipient: string, id: number): Promise<OwnershipRecord> {
+    const contractFactory = new ContractFactory();
+    const contract = contractFactory.getStravaSegmentNftContract();
+    return contract.getOwnershipRecord(recipient, id);
   }
 }

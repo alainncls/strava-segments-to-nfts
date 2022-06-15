@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { NftService } from './nft.service';
 import { MintNftDto } from './dto/mint-nft.dto';
+import OwnershipRecord from '../model/OwnershipRecord';
 
 @Controller('nfts')
 export class NftController {
@@ -14,5 +15,10 @@ export class NftController {
   @Get()
   async getContractAddress(): Promise<string> {
     return this.nftService.getContractAddress();
+  }
+
+  @Get()
+  async getOwnershipRecord(@Query() query): Promise<OwnershipRecord> {
+    return this.nftService.getOwnershipRecord(query.recipient, query.id);
   }
 }

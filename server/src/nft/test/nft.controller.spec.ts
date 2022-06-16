@@ -1,15 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NftController } from '../nft.controller';
 import { NftService } from '../nft.service';
+import OwnershipRecord from '../../model/OwnershipRecord';
 
 describe('NftController', () => {
   let controller: NftController;
   const txHashes = ['txHash1', 'txHash2'];
   const contractAddress = '0x06012c8cf97BEaD5deAe237070F9587f8E7A266d';
+  const ownershipRecord = new OwnershipRecord(2, Date.now(), 'tokenURI', 'segmentId');
 
   const mockNftService = {
     mintNft: jest.fn(() => txHashes),
     getContractAddress: jest.fn(() => contractAddress),
+    getOwnershipRecord: jest.fn(() => ownershipRecord),
   };
 
   beforeEach(async () => {
@@ -36,5 +39,11 @@ describe('NftController', () => {
 
   it('should get ERC721 contract address', async () => {
     expect(await controller.getContractAddress()).toEqual(contractAddress);
+  });
+
+  it('should get an NFT ownership record', async () => {
+    expect(await controller.getOwnershipRecord({ recipient: 'recipient address', id: 123456 })).toEqual(
+      ownershipRecord,
+    );
   });
 });

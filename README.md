@@ -96,7 +96,8 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 
 * ✔️ Upload image to IPFS
 * ✔️ Make an NFT from this image
-* ❌ Frontend connection with MetaMask
+* ✔️ Frontend connection with MetaMask
+* ❌ Frontend connection with Wallet Connect
 * ❌ Mint NFTs from the frontend with MetaMask
 
 ### Advanced stuff
@@ -107,7 +108,6 @@ It's [here](https://github.com/alainncls/strava-segments-to-nfts-webapp)!
 ## To Do
 
 * Remove backend NFT minting (to be done by the end-user)
-* Add a new endpoint to display a specific NFT information
 * Stop using end-user's Strava token in backend, get everything needed in frontend and send it to the backend
 * WebApp: use axios to manage API calls?
 * WebApp: get contract address from the endpoint

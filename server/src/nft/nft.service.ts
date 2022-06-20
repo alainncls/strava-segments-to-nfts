@@ -3,13 +3,18 @@ import ContractFactory from '../config/ContractFactory';
 import { ContractTransaction } from 'ethers';
 import { MintNftDto } from './dto/mint-nft.dto';
 import OwnershipRecord from '../model/OwnershipRecord';
+import StravaSegmentNftContract from '../config/StravaSegmentNftContract';
+
+let contract: StravaSegmentNftContract;
 
 @Injectable()
 export class NftService {
-  async mintNft(mintNftDto: MintNftDto): Promise<string[]> {
-    // TODO: Ether signer should be the user (not the platform)
+  constructor() {
     const contractFactory = new ContractFactory();
-    const contract = contractFactory.getStravaSegmentNftContract();
+    contract = contractFactory.getStravaSegmentNftContract();
+  }
+
+  async mintNft(mintNftDto: MintNftDto): Promise<string[]> {
     const txHashes: string[] = [];
 
     // TODO: get NFT recipient public address from a MetaMask login
@@ -27,14 +32,10 @@ export class NftService {
   }
 
   getContractAddress(): string {
-    const contractFactory = new ContractFactory();
-    const contract = contractFactory.getStravaSegmentNftContract();
     return contract.getContractAddress();
   }
 
   async getOwnershipRecord(recipient: string, id: number): Promise<OwnershipRecord> {
-    const contractFactory = new ContractFactory();
-    const contract = contractFactory.getStravaSegmentNftContract();
     return contract.getOwnershipRecord(recipient, id);
   }
 }

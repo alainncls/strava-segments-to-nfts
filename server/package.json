@@ -28,7 +28,7 @@
     "@nestjs/platform-express": "^8.4.3",
     "canvas": "^2.9.1",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
+    "class-validator": "^0.14.0",
     "ethers": "^5.6.5",
     "ipfs-http-client": "^56.0.2",
     "mongoose": "^6.2.8",

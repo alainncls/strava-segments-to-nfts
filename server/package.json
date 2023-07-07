@@ -30,7 +30,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "ethers": "^5.6.5",
-    "ipfs-http-client": "^56.0.2",
+    "ipfs-http-client": "^60.0.1",
     "mongoose": "^6.4.6",
     "polyline-encoded": "^0.0.9",
     "strava-v3": "^2.1.0"

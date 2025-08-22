@@ -21,11 +21,11 @@
     "test:watch": "jest --config=jest.json --watch"
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.3",
-    "@nestjs/config": "^2.0.0",
-    "@nestjs/core": "^8.4.3",
-    "@nestjs/mongoose": "^9.0.3",
-    "@nestjs/platform-express": "^8.4.3",
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/config": "^2.3.4",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/mongoose": "^9.2.2",
+    "@nestjs/platform-express": "^11.1.6",
     "canvas": "^2.9.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^9.4.2",
-    "@nestjs/testing": "^8.4.3",
+    "@nestjs/testing": "^11.1.6",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.16.0",

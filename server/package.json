@@ -33,7 +33,7 @@
     "ipfs-http-client": "^56.0.2",
     "mongoose": "^6.12.0",
     "polyline-encoded": "^0.0.9",
-    "strava-v3": "^2.1.0"
+    "strava-v3": "^3.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.10",
